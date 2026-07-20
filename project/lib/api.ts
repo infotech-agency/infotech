@@ -79,7 +79,7 @@ export async function fetchServiceBySlug(slug: string): Promise<Service | null> 
 // Get all service slugs for static generation
 export async function getAllServiceSlugs(): Promise<string[]> {
   try {
-    const response = await fetch(`${API_URL}/api/services`, {
+    const response = await fetch(`${BASE_URL}/services`, {
       next: {
         revalidate: 300 // Revalidate every 5 minutes
       }
