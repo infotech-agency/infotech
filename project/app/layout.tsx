@@ -965,6 +965,7 @@ import { Poppins } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
+import { BASE_URL } from '@/utils/baseUrl';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -975,7 +976,7 @@ const poppins = Poppins({
 
 async function getSEOSettings() {
   try {
-    const res = await fetch('http://localhost:5000/api/seo', {
+    const res = await fetch(`${BASE_URL}/seo`, {
       cache: 'no-store',
     });
     if (!res.ok) return null;
@@ -989,7 +990,8 @@ async function getSEOSettings() {
 
 async function getHomeSchema() {
   try {
-    const res = await fetch('http://localhost:5000/api/pages/slug/home', {
+    // http://localhost:5000/api/pages/slug/home
+    const res = await fetch(`${BASE_URL}/pages/slug/home`, {
       cache: 'no-store',
     });
     if (!res.ok) return null;

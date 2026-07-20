@@ -2297,6 +2297,7 @@ import SectionHeading from '@/components/common/SectionHeading';
 import CTABanner from '@/components/common/CTABanner';
 import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
 import HtmlContent from '@/components/common/HtmlContent';
+import { BASE_URL } from '@/utils/baseUrl';
 // Types based on your API response
 interface Career {
   _id: string;
@@ -2374,9 +2375,10 @@ export default function CareersContent() {
   // Fetch careers from API
   useEffect(() => {
     const fetchCareers = async () => {
+      // http://localhost:5000/api/careers
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/careers');
+        const response = await fetch(`${BASE_URL}/careers`);
         const result = await response.json();
         
         if (result.success) {
@@ -2470,7 +2472,8 @@ export default function CareersContent() {
       formData.append('resume', file);
 
       // Send to your API endpoint
-      const response = await fetch('http://localhost:5000/api/job-applications', {
+      // http://localhost:5000/api/job-applications
+      const response = await fetch(`${BASE_URL}/job-applications`, {
         method: 'POST',
         body: formData,
       });
