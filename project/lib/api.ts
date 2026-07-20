@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/utils/baseUrl";
+
 // lib/api.ts
 export interface BannerImage {
   public_id: string;
@@ -53,7 +55,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 // Fetch a single service by slug
 export async function fetchServiceBySlug(slug: string): Promise<Service | null> {
   try {
-    const response = await fetch(`${API_URL}/api/services/slug/${slug}`, {
+    const response = await fetch(`${BASE_URL}/services/slug/${slug}`, {
       next: {
         revalidate: 60 // Revalidate every 60 seconds
       }

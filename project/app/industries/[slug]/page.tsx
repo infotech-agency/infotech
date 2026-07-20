@@ -124,12 +124,13 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import IndustryPage from '@/components/industries/IndustryPage';
+import { BASE_URL } from '@/utils/baseUrl';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 async function getAllIndustries() {
   try {
-    const res = await fetch(`${API_URL}/api/industries`, {
+    const res = await fetch(`${BASE_URL}/industries`, {
       cache: 'no-store'
     });
     const data = await res.json();
@@ -142,7 +143,7 @@ async function getAllIndustries() {
 
 async function getIndustryBySlug(slug: string) {
   try {
-    const res = await fetch(`${API_URL}/api/industries/slug/${slug}`, {
+    const res = await fetch(`${BASE_URL}/industries/slug/${slug}`, {
       cache: 'no-store'
     });
     const data = await res.json();

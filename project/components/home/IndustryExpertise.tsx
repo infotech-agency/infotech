@@ -196,6 +196,7 @@ import {
 } from 'lucide-react';
 import SectionHeading from '@/components/common/SectionHeading';
 import { Stagger, StaggerItem } from '@/components/common/Reveal';
+import { BASE_URL } from '@/utils/baseUrl';
 
 interface IndustryItem {
   _id: string;
@@ -231,7 +232,8 @@ export default function IndustryExpertise() {
   useEffect(() => {
     const fetchIndustries = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/industries?limit=10&status=published');
+        // http://localhost:5000/api/industries?limit=10&status=published
+        const response = await fetch(`${BASE_URL}/industries?limit=10&status=published`);
         const result = await response.json();
 
         if (result.success && result.data) {

@@ -164,6 +164,7 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import SectionHeading from '@/components/common/SectionHeading';
 import FAQAccordion from '@/components/common/FAQAccordion';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -210,7 +211,7 @@ export default function HomeFAQ() {
     const fetchFaqs = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/faqs?limit=20`);
+        const response = await fetch(`${BASE_URL}/faqs?limit=20`);
         const data = await response.json();
 
         if (data.success && data.data) {

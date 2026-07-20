@@ -8,6 +8,7 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import SectionHeading from '@/components/common/SectionHeading';
 import { Stagger, StaggerItem } from '@/components/common/Reveal';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -43,7 +44,7 @@ export default function LatestBlogs() {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/blogs?status=published&limit=3`);
+        const response = await fetch(`${BASE_URL}/blogs?status=published&limit=3`);
         const data = await response.json();
         
         if (data.success && data.data) {

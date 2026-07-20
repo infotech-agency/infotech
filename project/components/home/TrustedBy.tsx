@@ -29,6 +29,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BASE_URL } from '@/utils/baseUrl';
 
 interface Client {
   _id: string;
@@ -49,7 +50,7 @@ export default function TrustedBy() {
     const fetchClients = async () => {
       try {
         const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-        const res = await fetch(`${API_URL}/api/clients?limit=50`);
+        const res = await fetch(`${BASE_URL}/clients?limit=50`);
         const data = await res.json();
         
         if (data.success && data.data) {

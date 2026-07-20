@@ -88,6 +88,7 @@ import Image from 'next/image';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 import SectionHeading from '@/components/common/SectionHeading';
 import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -125,7 +126,7 @@ export default function FeaturedCaseStudies() {
     const fetchCaseStudies = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/case-studies?status=published&limit=3`);
+        const response = await fetch(`${BASE_URL}/case-studies?status=published&limit=3`);
         const data = await response.json();
         
         if (data.success && data.data) {

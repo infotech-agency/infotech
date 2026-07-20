@@ -290,6 +290,7 @@ import FAQAccordion from '@/components/common/FAQAccordion';
 import CTABanner from '@/components/common/CTABanner';
 import { Reveal } from '@/components/common/Reveal';
 import { siteConfig, contactFaqs } from '@/lib/site-data';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -361,7 +362,7 @@ export default function ContactContent() {
         message: form.message || '',
       };
 
-      const response = await fetch(`${API_URL}/api/proposals`, {
+      const response = await fetch(`${BASE_URL}/proposals`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

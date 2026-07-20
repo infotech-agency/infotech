@@ -196,6 +196,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // Types based on your API response
 interface Testimonial {
@@ -234,7 +235,7 @@ export default function TestimonialsSlider() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/testimonials');
+        const response = await fetch(`${BASE_URL}/testimonials`);
         if (!response.ok) {
           throw new Error('Failed to fetch testimonials');
         }
@@ -354,7 +355,7 @@ export default function TestimonialsSlider() {
                   <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full">
                       <Image
-                        src={testimonial.photo.secure_url}
+                        src={testimonial.photo?.secure_url}
                         alt={testimonial.clientName}
                         fill
                         className="object-cover"

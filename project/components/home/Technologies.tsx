@@ -103,6 +103,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
+import { BASE_URL } from '@/utils/baseUrl';
 
 interface TechnologyItem {
   _id: string;
@@ -121,7 +122,7 @@ export default function Technologies() {
   useEffect(() => {
     const fetchTechnologies = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/technologies');
+        const response = await fetch(`${BASE_URL}/technologies`);
         const result = await response.json();
         
         if (result.success && result.data) {

@@ -5,10 +5,19 @@ import { cn } from '@/lib/utils';
 
 export default function TableOfContents({ headings }: { headings: string[] }) {
   const [activeSection, setActiveSection] = useState('');
+  // const decodeHtml = (html: string) => {
+  // const txt = document.createElement('textarea');
+  // txt.innerHTML = html;
+  // return txt.value;
   const decodeHtml = (html: string) => {
-  const txt = document.createElement('textarea');
+  if (typeof window === "undefined") {
+    return html;
+  }
+
+  const txt = document.createElement("textarea");
   txt.innerHTML = html;
   return txt.value;
+};
 };
   useEffect(() => {
     const handleScroll = () => {

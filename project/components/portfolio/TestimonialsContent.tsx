@@ -150,6 +150,7 @@ import { Stagger, StaggerItem } from '@/components/common/Reveal';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // Types based on your API response
 interface Testimonial {
@@ -179,7 +180,7 @@ export default function TestimonialsContent() {
     const fetchTestimonials = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/testimonials');
+        const response = await fetch(`${BASE_URL}/testimonials`);
         const result = await response.json();
         
         if (result.success) {
