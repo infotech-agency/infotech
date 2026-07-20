@@ -290,7 +290,7 @@ export default function Hero() {
                 href="/our-work/case-studies"
                 className="group inline-flex items-center justify-center gap-2.5 border-2 border-brand bg-white px-8 py-4 text-base font-bold text-brand transition-all hover:bg-slate-50"
               >
-                <span className="flex h-7 w-7 items-center justify-center bg-brand/5 transition-colors group-hover:bg-ocean group-hover:text-white">
+                <span className="flex h-7 w-7 rounded-full items-center justify-center bg-brand/5 transition-colors group-hover:bg-ocean group-hover:text-white">
                   <Play className="h-3.5 w-3.5 fill-current" />
                 </span>
                 View Case Studies
@@ -328,23 +328,23 @@ export default function Hero() {
             <div className="relative aspect-[4/4.5]">
               
               {/* Main Image Container - Sharp Corners & Deep Shadow */}
-              <div className="absolute inset-0 overflow-hidden border border-slate-200 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)]">
+              <div className="absolute inset-0 overflow-hidden  ">
                 <Image
                   // src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
                   src="/hero/marketing3.png"
                   alt="Digital marketing team at work"
                   fill
                   priority
-                  className="object-cover"
+                  className="object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Cinematic blend overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand/30 via-transparent to-transparent" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-brand/30 via-transparent to-transparent" /> */}
               </div>
 
               {/* Floating Glassmorphic Card 1 — Organic Growth (Top Left) */}
               {/* Made sharp (rounded-none) to match the brutalist aesthetic */}
-              <motion.div
+              {/* <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                 className="absolute -left-4 top-12 border-l-4 border-leaf bg-white/90 p-4 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl sm:-left-8"
@@ -358,10 +358,10 @@ export default function Hero() {
                     <p className="text-xl font-extrabold text-brand">+340%</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Floating Glassmorphic Card 2 — Rating (Right Middle) */}
-              <motion.div
+              {/* <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                 className="absolute -right-4 top-1/3 border-l-4 border-ocean bg-white/90 p-4 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl sm:-right-8"
@@ -373,10 +373,10 @@ export default function Hero() {
                 </div>
                 <p className="text-xs font-medium text-slate-500">Client Rating</p>
                 <p className="text-xl font-extrabold text-brand">4.9 / 5.0</p>
-              </motion.div>
+              </motion.div> */}
 
               {/* Floating Glassmorphic Card 3 — Awards (Bottom Left) */}
-              <motion.div
+              {/* <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                 className="absolute -bottom-6 left-1/4 border-l-4 border-electric bg-white/90 p-4 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl"
@@ -390,7 +390,7 @@ export default function Hero() {
                     <p className="text-xl font-extrabold text-brand">15+</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Abstract Geometric Accents */}
               <div className="absolute -bottom-10 -right-6 -z-10 h-32 w-32 border-2 border-dashed border-leaf/40" />

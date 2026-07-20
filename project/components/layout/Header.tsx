@@ -413,11 +413,11 @@ export default function Header() {
                                 className={cn(
                                   'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                                   isActive
-                                    ? 'bg-white text-brand shadow-sm'
+                                    ? 'bg-white text-white bg-brand shadow-sm'
                                     : 'text-muted-foreground hover:bg-white/60 hover:text-brand'
                                 )}
                               >
-                                <Icon className="h-4 w-4 text-[#0868A0]" />
+                                <Icon className="h-4 w-4 text-[#0868A0] hover:text-white" />
                                 {category.name}
                               </button>
                             );

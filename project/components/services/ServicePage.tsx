@@ -806,63 +806,69 @@ export default function ServicePage({ service }: ServicePageProps) {
       />
 
       {/* Overview Section */}
-      <section className="bg-white py-14 sm:py-16 md:py-20 lg:py-28">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12 lg:items-center">
-            <Reveal direction="right">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 sm:mb-4 sm:px-4 sm:text-sm">
-                <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                Overview
+   <section className="bg-white py-14 sm:py-16 md:py-20 lg:py-28">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12 lg:items-center">
+      <Reveal direction="right">
+        <div className="min-w-0">
+          {/* <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 sm:mb-4 sm:px-4 sm:text-sm">
+            <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            Overview
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            {service.title}
+          </h2> */}
+
+          <p className="mt-4 text-sm leading-relaxed text-gray-600 sm:mt-5 sm:text-base">
+            {service.overview || 'We provide cutting-edge solutions to help your business grow and succeed in the digital landscape.'}
+          </p>
+          {/* {service.mainContent && (
+            <div 
+              className="mt-4 text-sm leading-relaxed text-gray-600 bg-red-500 sm:text-base"
+              dangerouslySetInnerHTML={{ __html: service.mainContent }}
+            />
+          )} */}
+          {service.mainContent && (
+            <div 
+              className="mt-4 w-full max-w-full overflow-x-hidden break-words text-sm leading-relaxed text-gray-600 sm:text-base [&_img]:h-auto [&_img]:max-w-full [&_pre]:overflow-x-auto [&_pre]:whitespace-pre-wrap [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_a]:break-all"
+              style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}
+              dangerouslySetInnerHTML={{ __html: service.mainContent }}
+            />
+          )}
+          <Link
+            href="/contact"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl sm:mt-8 sm:w-auto sm:justify-start sm:px-7 sm:py-3.5"
+          >
+            Get Started
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </Reveal>
+      <Reveal direction="left">
+        <div className="min-w-0">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-xl sm:rounded-2xl sm:shadow-2xl">
+            {service.thumbnail?.secure_url ? (
+              <Image
+                src={service.thumbnail.secure_url}
+                alt={service.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-400">
+                <div className="text-center px-4">
+                  <Icon className="mx-auto h-12 w-12 text-blue-400 sm:h-16 sm:w-16" />
+                  <p className="mt-2 text-sm sm:text-base">{service.title}</p>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                {service.title}
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-gray-600 sm:mt-5 sm:text-base">
-                {service.overview || 'We provide cutting-edge solutions to help your business grow and succeed in the digital landscape.'}
-              </p>
-              {/* {service.mainContent && (
-                <div 
-                  className="mt-4 text-sm leading-relaxed text-gray-600 bg-red-500 sm:text-base"
-                  dangerouslySetInnerHTML={{ __html: service.mainContent }}
-                />
-              )} */}
-              {service.mainContent && (
-  <div 
-    className="mt-4 w-full max-w-full overflow-x-hidden break-words text-sm leading-relaxed text-gray-600 sm:text-base [&_img]:h-auto [&_img]:max-w-full [&_pre]:overflow-x-auto [&_pre]:whitespace-pre-wrap [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_a]:break-all"
-    dangerouslySetInnerHTML={{ __html: service.mainContent }}
-  />
-)}
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl sm:mt-8 sm:w-auto sm:justify-start sm:px-7 sm:py-3.5"
-              >
-                Get Started
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Reveal>
-            <Reveal direction="left">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-xl sm:rounded-2xl sm:shadow-2xl">
-                {service.thumbnail?.secure_url ? (
-                  <Image
-                    src={service.thumbnail.secure_url}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-400">
-                    <div className="text-center px-4">
-                      <Icon className="mx-auto h-12 w-12 text-blue-400 sm:h-16 sm:w-16" />
-                      <p className="mt-2 text-sm sm:text-base">{service.title}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Reveal>
+            )}
           </div>
         </div>
-      </section>
+      </Reveal>
+    </div>
+  </div>
+</section>
 
       {/* Features/Benefits */}
     {benefits.length > 0 && (
@@ -934,7 +940,7 @@ export default function ServicePage({ service }: ServicePageProps) {
           </div>
         </div>
       </section> */}
-      <section className="relative overflow-hidden bg-white py-14 sm:py-16 md:py-20 lg:py-28">
+  <section className="relative overflow-hidden bg-white py-14 sm:py-16 md:py-20 lg:py-28">
   {/* subtle background accent */}
   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
@@ -952,7 +958,7 @@ export default function ServicePage({ service }: ServicePageProps) {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
         {processSteps.map((step, i) => (
           <Reveal key={step.step} delay={i * 0.1}>
-            <div className="group relative h-full">
+            <div className="group relative h-full min-w-0">
               {/* number badge, sits on the connecting line */}
               <div className="relative z-10 mb-5 flex items-center gap-3 lg:mb-6 lg:flex-col lg:items-start lg:gap-0">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-blue-600 bg-white text-lg font-bold text-blue-600 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white lg:h-16 lg:w-16 lg:text-xl">
@@ -960,15 +966,15 @@ export default function ServicePage({ service }: ServicePageProps) {
                 </div>
                 {/* arrow connector for mobile/tablet */}
                 {i !== processSteps.length - 1 && (
-                  <div className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent sm:hidden" />
+                  <div className="h-px min-w-0 flex-1 bg-gradient-to-r from-blue-200 to-transparent sm:hidden" />
                 )}
               </div>
 
-              <div className="relative h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-blue-400 group-hover:shadow-xl">
-                <h3 className="text-base font-bold text-gray-900">
+              <div className="relative h-full min-w-0 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-blue-400 group-hover:shadow-xl">
+                <h3 className="text-base font-bold text-gray-900 break-words">
                   {step.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-gray-600">
+                <p className="mt-2.5 text-sm leading-relaxed text-gray-600 break-words">
                   {step.description}
                 </p>
 

@@ -271,7 +271,7 @@ export default function CareersContent() {
               return (
                 <StaggerItem key={perk.title}>
                   <div className="h-full rounded-2xl border border-border bg-sky p-7 shadow-premium transition-all hover:-translate-y-2 hover:shadow-premium-lg">
-                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl gradient-primary text-white shadow-glow">
+                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white shadow-glow">
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="text-lg font-bold text-brand">{perk.title}</h3>
@@ -403,7 +403,8 @@ export default function CareersContent() {
                       </div>
                       {job.salary && (
                         <div className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground">
-                          <DollarSign className="h-4 w-4 flex-shrink-0" />
+                          {/* <DollarSign className="h-4 w-4 flex-shrink-0" /> */}
+                          ₹
                           <span className="min-w-0 truncate font-semibold text-green-600">{job.salary}</span>
                         </div>
                       )}

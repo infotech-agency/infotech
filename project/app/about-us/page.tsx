@@ -8,6 +8,8 @@ import CTABanner from '@/components/common/CTABanner';
 import Counter from '@/components/common/Counter';
 import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
 import { achievements, teamMembers, awards } from '@/lib/site-data';
+import AwardsRecognition from '@/components/home/AwardsRecognition';
+import Achievements from '@/components/home/Achievements';
 
 export const metadata: Metadata = {
   title: 'About Us | Our Story & Mission',
@@ -104,27 +106,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-sky py-16 lg:py-20">
-        <div className="container mx-auto px-4">
-          <Stagger className="grid grid-cols-2 gap-6 lg:grid-cols-4" stagger={0.1}>
-            {achievements.map((item) => (
-              <StaggerItem key={item.label}>
-                <div className="rounded-2xl border border-border bg-white p-8 text-center shadow-premium">
-                  <div className="text-4xl font-bold gradient-text lg:text-5xl">
-                    <Counter value={item.value} suffix={item.suffix} />
-                  </div>
-                  <div className="mt-3 text-base font-semibold text-brand">
-                    {item.label}
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <Achievements/>
 
       {/* Mission, Vision, Values */}
       <section className="bg-white py-20 lg:py-28">
@@ -140,7 +122,7 @@ export default function AboutPage() {
               return (
                 <StaggerItem key={value.title}>
                   <div className="h-full rounded-2xl border border-border bg-sky p-8 shadow-premium transition-all hover:-translate-y-2 hover:shadow-premium-lg">
-                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl gradient-primary text-white shadow-glow">
+                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white shadow-glow">
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="text-xl font-bold text-brand">{value.title}</h3>
@@ -178,7 +160,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-white py-20 lg:py-28">
+      {/* <section className="bg-white py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <SectionHeading
             eyebrow="Leadership"
@@ -210,35 +192,10 @@ export default function AboutPage() {
             ))}
           </Stagger>
         </div>
-      </section>
+      </section> */}
 
       {/* Awards */}
-      <section className="bg-sky py-20 lg:py-28">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            eyebrow="Awards"
-            title="Recognition We Are Proud Of"
-            description="Our work has been recognized by the industry's most respected organizations."
-          />
-          <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
-            {awards.map((award) => (
-              <StaggerItem key={award.title}>
-                <div className="flex items-center gap-5 rounded-2xl border border-border bg-white p-6 shadow-premium">
-                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl gradient-primary text-white">
-                    <CheckCircle2 className="h-7 w-7" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-brand">{award.title}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {award.organization} · {award.year}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <AwardsRecognition/>
 
       <CTABanner
         title="Want to Work with Us?"
