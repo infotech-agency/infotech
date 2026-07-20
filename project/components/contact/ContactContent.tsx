@@ -282,7 +282,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, AlertCircle, Loader2 } from 'lucide-react';
 import PageHero from '@/components/common/PageHero';
 import SectionHeading from '@/components/common/SectionHeading';
@@ -291,6 +291,7 @@ import CTABanner from '@/components/common/CTABanner';
 import { Reveal } from '@/components/common/Reveal';
 import { siteConfig, contactFaqs } from '@/lib/site-data';
 import { BASE_URL } from '@/utils/baseUrl';
+import { getWebsiteSettings } from '@/lib/settings';
 
 // API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -325,6 +326,7 @@ export default function ContactContent() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [information,setInformation] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -335,6 +337,20 @@ export default function ContactContent() {
     website: '',
     message: '',
   });
+
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const contactInfo = await getWebsiteSettings();
+        setInformation(contactInfo);
+      } catch (error) {
+        console.error("Failed to fetch settings:", error);
+      }
+    };
+  
+    fetchInfo();
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -584,7 +600,7 @@ export default function ContactContent() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex w-full items-center justify-center gap-2 bg-ocean px-8 py-4 text-base font-semibold text-white shadow-glow transition-all hover:bg-ocean-dark disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2 bg-brand px-8 py-4 text-base font-semibold text-white shadow-glow transition-all hover:bg-ocean-dark disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -618,10 +634,10 @@ export default function ContactContent() {
                     For proposals, partnerships, and general inquiries.
                   </p>
                   <a
-                    href={`mailto:${siteConfig.email}`}
+                    href={`mailto:${information?.email}`}
                     className="mt-3 block text-base font-semibold text-electric hover:underline"
                   >
-                    {siteConfig.email}
+                    {information?.email}
                   </a>
                 </div>
 
@@ -631,26 +647,48 @@ export default function ContactContent() {
                   </div>
                   <h3 className="text-lg font-bold text-brand">Call Us</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Mon–Fri, 9:00 AM – 7:00 PM IST
+                    Mon–Fri, 10:00 AM – 7:00 PM IST
                   </p>
                   <a
-                    href={`tel:${siteConfig.phone}`}
+                    href={`tel:${information?.phone}`}
                     className="mt-3 block text-base font-semibold text-electric hover:underline"
                   >
-                    {siteConfig.phone}
+                    {information?.phone}
                   </a>
                 </div>
 
-                <div className="rounded-2xl border border-border bg-white p-7 shadow-premium">
+                {/* <div className="rounded-2xl border border-border bg-white p-7 shadow-premium">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary-soft text-electric">
                     <MapPin className="h-7 w-7" />
                   </div>
                   <h3 className="text-lg font-bold text-brand">Visit Us</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {siteConfig.address}
+                    {information?.address}
                   </p>
-                </div>
+                </div> */}
+                <div className="rounded-2xl border border-border bg-white p-7 shadow-premium">
+  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary-soft text-electric">
+    <MapPin className="h-7 w-7" />
+  </div>
 
+  <h3 className="text-lg font-bold text-brand">Visit Us</h3>
+
+  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+    {information?.address}
+  </p>
+
+  <div className="mt-6 overflow-hidden rounded-xl border">
+    <iframe
+      src={information?.googleMap}
+      width="100%"
+      height="250"
+      loading="lazy"
+      allowFullScreen
+      referrerPolicy="no-referrer-when-downgrade"
+      className="border-0"
+    />
+  </div>
+</div>
                 <div className="rounded-2xl border border-border bg-brand p-7 shadow-premium">
                   <div className="mb-3 flex items-center gap-3">
                     <Clock className="h-6 w-6 text-electric" />
@@ -668,34 +706,7 @@ export default function ContactContent() {
       </section>
 
       {/* Map Placeholder */}
-      <section className="bg-sky py-12">
-        <div className="container mx-auto px-4">
-          <Reveal>
-            <div className="relative h-96 overflow-hidden rounded-3xl border border-border shadow-premium-lg">
-              <div className="flex h-full items-center justify-center bg-gradient-to-br from-brand to-electric">
-                <div className="text-center">
-                  <MapPin className="mx-auto h-16 w-16 text-white/80" />
-                  <h3 className="mt-4 text-2xl font-bold text-white">
-                    {siteConfig.name}
-                  </h3>
-                  <p className="mt-2 max-w-md text-sky/80">
-                    {siteConfig.address}
-                  </p>
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-semibold text-brand transition-all hover:bg-sky"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    Open in Google Maps
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+   
 
       {/* FAQ */}
       <section className="bg-white py-20 lg:py-28">

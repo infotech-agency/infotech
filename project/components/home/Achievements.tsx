@@ -142,6 +142,7 @@ import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
 import Counter from '@/components/common/Counter';
 // Importing icons (Assuming lucide-react. Run: npm install lucide-react)
 import { Trophy, Users, Rocket, Award, CheckCircle, Sparkles } from 'lucide-react';
+import { BASE_URL } from '@/utils/baseUrl';
 
 interface AchievementItem {
   _id: string;
@@ -169,7 +170,8 @@ export default function Achievements() {
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/counters');
+        // http://localhost:5000/api/counters
+        const response = await fetch(`${BASE_URL}/counters`);
         const result = await response.json();
         
         if (result.success && result.data) {

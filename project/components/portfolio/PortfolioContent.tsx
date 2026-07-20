@@ -323,6 +323,7 @@ import { ArrowRight, AlertCircle, FolderOpen, Star } from 'lucide-react';
 import PageHero from '@/components/common/PageHero';
 import CTABanner from '@/components/common/CTABanner';
 import { Stagger, StaggerItem } from '@/components/common/Reveal';
+import { BASE_URL } from '@/utils/baseUrl';
 
 // Types based on your API response
 interface Project {
@@ -358,7 +359,7 @@ export default function PortfolioContent() {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch(`${BASE_URL}/projects`);
         const result = await response.json();
         
         if (result.success) {

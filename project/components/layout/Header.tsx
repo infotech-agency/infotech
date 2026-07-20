@@ -313,12 +313,13 @@ export default function Header() {
                       <h3 className="text-sm font-bold uppercase tracking-wider text-brand">
                         Industries We Serve
                       </h3>
-                      <Link
+                      {/* <Link
                         href="/industries"
                         className="flex items-center gap-1 text-sm font-semibold text-electric hover:underline"
                       >
                         View All <ArrowRight className="h-3 w-3" />
-                      </Link>
+                      </Link> */}
+
                     </div>
                     {loading ? (
                       <div className="grid grid-cols-3 gap-2">
@@ -430,14 +431,14 @@ export default function Header() {
                           <h4 className="text-sm font-bold text-brand">
                             {activeCategory?.name || 'Services'}
                           </h4>
-                          {activeCategory && (
+                          {/* {activeCategory && (
                             <Link
                               href={`/services/category/${activeCategory.slug}`}
                               className="text-xs font-medium text-electric hover:underline"
                             >
                               View All
                             </Link>
-                          )}
+                          )} */}
                         </div>
                         
                         {activeCategoryServices.length > 0 ? (

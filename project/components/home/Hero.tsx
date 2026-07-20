@@ -330,7 +330,8 @@ export default function Hero() {
               {/* Main Image Container - Sharp Corners & Deep Shadow */}
               <div className="absolute inset-0 overflow-hidden border border-slate-200 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)]">
                 <Image
-                  src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+                  // src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+                  src="/hero/marketing3.png"
                   alt="Digital marketing team at work"
                   fill
                   priority

@@ -332,16 +332,7 @@ export default function IndustryExpertise() {
           </Stagger>
         )}
 
-        {/* View All Button */}
-        <div className="mt-14 flex justify-center">
-          <Link
-            href="/industries/more"
-            className="group inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:border-slate-900 hover:bg-slate-900 hover:text-white hover:shadow-md"
-          >
-            View All Industries
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </div>
+       
       </div>
     </section>
   );
