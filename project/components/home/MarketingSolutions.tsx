@@ -162,10 +162,10 @@ export default function MarketingSolutions() {
 
             return (
               <StaggerItem key={item.title}>
-                <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-electric/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
+                <div className="group relative flex h-full flex-col overflow-hidden rounded border border-slate-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-electric/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
                   
                   {/* Image Showcase */}
-                  <div className="relative h-52 w-full overflow-hidden rounded-t-2xl">
+                  <div className="relative h-52 w-full overflow-hidden rounded-t">
                     <Image
                       src={image}
                       alt={item.title}
@@ -177,9 +177,7 @@ export default function MarketingSolutions() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                     
                     {/* Optional: Subtle floating tag on image (can be removed if not needed) */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
-                       Active Service
-                    </div>
+                  
                   </div>
 
                   {/* Icon Badge */}
@@ -199,12 +197,12 @@ export default function MarketingSolutions() {
                     </p>
 
                     {/* Reinstated Hover CTA */}
-                    <div className="mt-6 flex items-center gap-2 border-t border-slate-100 pt-5">
+                    {/* <div className="mt-6 flex items-center gap-2 border-t border-slate-100 pt-5">
                       <span className="text-sm font-semibold text-slate-400 transition-colors duration-300 group-hover:text-brand">
                         Learn More
                       </span>
                       <ArrowUpRight className="h-4 w-4 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-electric" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </StaggerItem>

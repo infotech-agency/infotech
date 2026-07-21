@@ -101,7 +101,7 @@ export async function getAllServiceSlugs(): Promise<string[]> {
 // Fetch all services (optional)
 export async function fetchAllServices(): Promise<Service[]> {
   try {
-    const response = await fetch(`${API_URL}/api/services`, {
+    const response = await fetch(`${BASE_URL}/api/services`, {
       next: {
         revalidate: 300
       }

@@ -67,12 +67,12 @@ export async function generateMetadata({
     title: service.metaTitle || service.title,
     description: service.metaDescription || service.shortDescription,
     alternates: { 
-      canonical: service.canonicalUrl || `/services/${service.slug}` 
+      canonical:  service.canonicalUrl ||`/services/${service.slug}` 
     },
     openGraph: {
       title: service.metaTitle || service.title,
       description: service.metaDescription || service.shortDescription,
-      url: `https://infotechagency.com/services/${service.slug}`,
+      url: `https://infotechagency.in/services/${service.slug}`,
       images: [
         { 
           url: service.bannerImage?.secure_url || '', 
