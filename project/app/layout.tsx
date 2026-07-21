@@ -169,6 +169,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+    openGraph: {
+    siteName: "Infotech Agency",
+    title: "Infotech Agency",
+    url: "https://infotechagency.in",
+    type: "website",
+  },
   description:
     'Infotech Agency is a full-service digital marketing agency delivering SEO, PPC, web development, content marketing, and social media strategies.',
 };
