@@ -113,7 +113,7 @@ export default function WhyChooseUs() {
             return (
               <StaggerItem key={item.title}>
                 <div className="group h-full rounded-2xl border border-border bg-white/90 backdrop-blur-sm p-8 shadow-premium transition-all hover:-translate-y-2 hover:border-electric/30 hover:shadow-premium-lg">
-                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-brand transition-all group-hover:bg-brand group-hover:text-white">
+                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-brand transition-all group-hover:bg-[#6BAB44] group-hover:text-white">
                     <Icon className="h-7 w-7" />
                   </div>
                   <h3 className="text-xl font-bold text-brand">{item.title}</h3>

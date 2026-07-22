@@ -189,7 +189,7 @@ export default function MarketingSolutions() {
 
                   {/* Content */}
                   <div className="flex flex-1 flex-col px-6 pb-7 pt-5">
-                    <h3 className="text-xl font-bold text-brand transition-colors duration-300 group-hover:text-electric">
+                    <h3 className="text-xl font-bold text-brand transition-colors duration-300 group-hover:text-[#6BAA44]">
                       {item.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-500">

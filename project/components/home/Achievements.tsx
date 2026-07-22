@@ -5,6 +5,7 @@ import Counter from '@/components/common/Counter';
 // Importing icons (Assuming lucide-react. Run: npm install lucide-react)
 import { Trophy, Users, Rocket, Award, CheckCircle, Sparkles } from 'lucide-react';
 import { BASE_URL } from '@/utils/baseUrl';
+import Image from 'next/image';
 
 interface AchievementItem {
   _id: string;
@@ -51,7 +52,19 @@ export default function Achievements() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+    <section style={{
+    backgroundImage: "url('/hero/svg/magicpattern.svg')",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  }} className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+      {/* <Image
+    src="/hero/svg/magicpattern.svg"
+    alt=""
+    fill
+    priority={false}
+    className="pointer-events-none absolute inset-0 object-cover opacity-10"
+  /> */}
       {/* Decorative Background Elements for Marketing Vibe */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-electric/10 blur-3xl"></div>
@@ -65,13 +78,16 @@ export default function Achievements() {
             <Sparkles className="h-4 w-4" />
             Our Achievements
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight text-brand sm:text-4xl lg:text-5xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Numbers That Speak for{" "}
-            <span className="bg-gradient-to-r from-electric to-primary bg-clip-text text-transparent">
+            {/* <span className="bg-gradient-to-r from-electric to-primary bg-clip-text text-transparent">
               Themselves
-            </span>
+            </span> */}
+             <span className="relative inline-flex items-center rounded bg-gradient-to-r from-electric  to-indigo-600 px-5 py-2 text-white shadow-lg shadow-electric/30">
+    Themselves
+  </span>
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+          <p className="mt-5 text-lg leading-relaxed text-slate-200">
             Over 12 years, we have helped 500+ brands achieve measurable growth
             through data-driven digital marketing strategies.
           </p>
@@ -111,7 +127,7 @@ export default function Achievements() {
                       </div>
 
                       {/* Counter Value */}
-                      <div className="text-4xl font-extrabold tracking-tight text-brand lg:text-5xl">
+                      <div className="text-4xl font-semibold tracking-tight text-brand lg:text-5xl">
                         <Counter value={item.value} suffix={item.suffix} />
                       </div>
 
@@ -119,7 +135,7 @@ export default function Achievements() {
                       <div className="my-4 h-[2px] w-12 bg-slate-100 transition-all duration-500 group-hover:w-20 group-hover:bg-electric/20"></div>
 
                       {/* Label */}
-                      <div className="text-base font-bold uppercase tracking-wider text-brand">
+                      <div className="text-base font-semibold uppercase tracking-wider text-brand">
                         {item.label}
                       </div>
 

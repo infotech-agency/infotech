@@ -176,6 +176,8 @@
 //   );
 // }
 
+
+
 "use client"
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -250,7 +252,7 @@ export default function IndustryExpertise() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-white py-20 lg:py-28">
       {/* Decorative Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-1/4 h-72 w-72 rounded-full bg-electric/5 blur-3xl"></div>

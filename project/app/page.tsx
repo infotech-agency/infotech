@@ -33,17 +33,17 @@ export default function HomePage() {
   {
     title: "Web Developement", 
     subtitle: "",
-    backgroundImage: "https://brandripe.com/storage/media_files/blog6/1-%20Size%20and%20placement%20matter.jpg"
+    backgroundImage: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=1206&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     title: "Social Media", 
     subtitle: "",
-    backgroundImage: "https://cdn.prod.website-files.com/6242172a7e2e2ede634bba2f/66756e71925758d3eecf1278_social-media-marketing-strategy.jpg"
+    backgroundImage: "https://images.unsplash.com/photo-1683721003111-070bcc053d8b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     title: "Digital Marketing", 
     subtitle: "",
-    backgroundImage: "https://digitalpromenade.com/wp-content/uploads/2026/01/best-digital-marketing-agencies-in-mumbai.jpg"
+    backgroundImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     title: "Graphic Designing", 
