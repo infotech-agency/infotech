@@ -238,10 +238,10 @@ export default function LatestBlogs() {
                       {getReadTime(post.content)}
                     </span>
                   </div>
-                  <h3 className="mt-3 text-lg font-bold text-brand transition-colors group-hover:text-electric line-clamp-2">
+                  <h3 className="mt-3 text-lg font-semibold text-[#F43F5E] transition-colors group-hover:text-[black] line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-900 line-clamp-2">
                     {post.excerpt || post.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...'}
                   </p>
                   <div className="mt-5 flex items-center justify-between">

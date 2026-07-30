@@ -22,6 +22,7 @@ import CareersCta from '@/components/home/Careercta';
 import ScrollStack from '@/components/ui/scroll-stack';
 import GlobalReach from '@/components/home/GlobalReach';
 import WmeStyleHero from '@/components/common/WmeStyleHero';
+import LilAbout from '@/components/home/LilAbout';
 
 export default function HomePage() {
   const cards = [
@@ -43,7 +44,7 @@ export default function HomePage() {
   {
     title: "Digital Marketing", 
     subtitle: "",
-    backgroundImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    backgroundImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`"
   },
   {
     title: "Graphic Designing", 
@@ -66,8 +67,9 @@ export default function HomePage() {
       <TrustedBy />
 
       <Achievements />
-      <ScrollStack cards={cards}/>
-      
+
+      {/* <ScrollStack cards={cards}/> */}
+      <LilAbout/>
       <WhyChooseUs />
       {/* <ServicesGrid /> */}
       <IndustryExpertise />

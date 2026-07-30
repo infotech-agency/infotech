@@ -48,7 +48,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-brand-dark text-sky">
+    <footer className="relative overflow-hidden bg-black text-sky">
       <div className="absolute inset-0 bg-grid-dark opacity-20" />
       <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-electric/10 blur-3xl" />
 
@@ -121,7 +121,7 @@ export default function Footer() {
               <Image src="/images/logo.png" height={120} width={120} alt='logo' className="h-auto w-28 sm:w-32" />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-sky/70">
-            <Image src="/images/india-gate.png" height={80} width={80} alt='logo' className="h-auto w-28 sm:w-32" />
+            {/* <Image src="/images/india-gate.png" height={80} width={80} alt='logo' className="h-auto w-28 sm:w-32" /> */}
               {siteConfig.description}
             </p>
             <div className="mt-4 space-y-2 w-full">

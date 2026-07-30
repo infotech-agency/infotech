@@ -32,17 +32,17 @@ export default function SectionHeading({
             'mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold uppercase tracking-wider',
             light
               ? 'bg-white/10 text-sky'
-              : 'bg-gradient-primary-soft text-electric'
+              : 'bg-gradient-primary-soft text-[#F43F5E]'
           )}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-electric" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#F43F5E]" />
           {eyebrow}
         </div>
       )}
       <h2
         className={cn(
-          'text-2xl font-semibold leading-tight sm:text-4xl lg:text-5xl',
-          light ? 'text-white' : 'text-brand'
+          'text  leading-tight sm:text-3xl lg:text-4xl',
+          light ? 'text-white' : 'text-black'
         )}
       >
         {title}
@@ -50,8 +50,8 @@ export default function SectionHeading({
       {description && (
         <p
           className={cn(
-            'mt-5 text-lg leading-relaxed',
-            light ? 'text-sky/80' : 'text-muted-foreground'
+            'mt-5  leading-relaxed',
+            light ? 'text-black' : 'text-black'
           )}
         >
           {description}

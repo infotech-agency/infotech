@@ -53,7 +53,7 @@ export default function Achievements() {
 
   return (
     <section style={{
-    backgroundImage: "url('/hero/svg/magicpattern.svg')",
+    backgroundImage: "url('/hero/svg/mg.svg')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -87,7 +87,7 @@ export default function Achievements() {
     Themselves
   </span>
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-200">
+          <p className="mt-5 text-lg leading-relaxed text-white">
             Over 12 years, we have helped 500+ brands achieve measurable growth
             through data-driven digital marketing strategies.
           </p>

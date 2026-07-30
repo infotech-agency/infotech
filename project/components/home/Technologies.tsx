@@ -1,103 +1,3 @@
-// "use client"
-// import { useState, useEffect } from 'react';
-// import Image from 'next/image';
-// import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
-
-// interface TechnologyItem {
-//   _id: string;
-//   name: string;
-//   logo: {
-//     public_id: string;
-//     secure_url: string;
-//   };
-//   description?: string;
-// }
-
-// export default function Technologies() {
-//   const [technologies, setTechnologies] = useState<TechnologyItem[]>([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchTechnologies = async () => {
-//       try {
-//         const response = await fetch('http://localhost:5000/api/technologies');
-//         const result = await response.json();
-        
-//         if (result.success && result.data) {
-//           setTechnologies(result.data);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching technologies data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchTechnologies();
-//   }, []);
-
-//   return (
-//     <section className="bg-sky py-20 lg:py-28">
-//       <div className="container mx-auto px-4">
-//         {/* Header Section */}
-//         <Reveal className="mx-auto mb-16 max-w-3xl text-center">
-//           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-primary-soft px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-electric">
-//             <span className="h-1.5 w-1.5 rounded-full bg-electric" />
-//             Our Tech Stack
-//           </div>
-//           <h2 className="text-3xl font-bold text-brand sm:text-4xl lg:text-5xl">
-//             Technologies We Use
-//           </h2>
-//           <p className="mt-5 text-lg text-muted-foreground">
-//             We leverage cutting-edge frameworks, databases, and tools to build scalable websites, high-performance web applications, and robust CMS platforms.
-//           </p>
-//         </Reveal>
-
-//         {loading ? (
-//           /* Loading Skeleton State */
-//           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
-//             {[...Array(8)].map((_, index) => (
-//               <div key={index} className="h-32 animate-pulse rounded-2xl bg-white/50 p-6 shadow-premium" />
-//             ))}
-//           </div>
-//         ) : (
-//           /* Dynamic Grid with Stagger Animation */
-//           <Stagger className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
-//             {technologies.map((tech) => (
-//               <StaggerItem key={tech._id}>
-//                 <div className="group flex h-full flex-col items-center justify-center rounded-2xl border border-border bg-white p-6 text-center shadow-premium transition-all duration-300 hover:-translate-y-2 hover:border-electric/30 hover:shadow-premium-lg">
-//                   {/* Logo Container */}
-//                   <div className="relative flex h-16 w-16 items-center justify-center grayscale transition-all duration-300 group-hover:grayscale-0">
-//                     <Image
-//                       src={tech.logo.secure_url}
-//                       alt={`${tech.name} logo`}
-//                       fill
-//                       sizes="(max-w-768px) 100px, 64px"
-//                       className="object-contain"
-//                       unoptimized // Cloudinary URLs handle optimization natively
-//                     />
-//                   </div>
-                  
-//                   {/* Technology Name */}
-//                   <h3 className="mt-4 text-base font-bold text-brand transition-colors duration-300 group-hover:text-electric sm:text-lg">
-//                     {tech.name}
-//                   </h3>
-                  
-//                   {/* Conditional Description (Agar future me provide ki jaye) */}
-//                   {tech.description && (
-//                     <p className="mt-1 text-xs text-muted-foreground">
-//                       {tech.description}
-//                     </p>
-//                   )}
-//                 </div>
-//               </StaggerItem>
-//             ))}
-//           </Stagger>
-//         )}
-//       </div>
-//     </section>
-//   );
-// }
 
 "use client"
 import { useState, useEffect } from 'react';
@@ -154,13 +54,13 @@ export default function Technologies() {
             <span className="h-1.5 w-1.5 rounded-full bg-electric" />
             Our Tech Stack
           </div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-brand sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font tracking-tight text-brand sm:text-4xl lg:text-3xl">
             Technologies We{' '}
             <span className="bg-gradient-to-r from-electric to-leaf bg-clip-text text-transparent">
               Leverage
             </span>
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+          <p className="mt-5  leading-relaxed text-slate-600">
             We leverage cutting-edge frameworks, databases, and tools to build scalable websites, high-performance web applications, and robust CMS platforms.
           </p>
         </Reveal>

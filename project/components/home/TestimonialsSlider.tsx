@@ -292,7 +292,7 @@ export default function TestimonialsSlider() {
       {/* Wave SVG Background - Using next/image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
-          src="/svg/Wave.svg" // Put your SVG in the public folder
+          src="/svg/testimonials.svg" // Put your SVG in the public folder
           alt="Background wave"
           fill
           className="object-cover"
@@ -301,23 +301,16 @@ export default function TestimonialsSlider() {
       </div>
 
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-brand/40 pointer-events-none" />
+      <div className="absolute inset-0  pointer-events-none" />
 
       <div className="container relative mx-auto px-4 z-10">
         <SectionHeading
-          light
-          eyebrow="Client Success Stories"
+          dark
+          // eyebrow="Client Success Stories"
           title="What Our Clients Say"
           description="We measure our success by our clients' success. Here is what they have to say about working with Infotech Agency."
         />
-        <div className='flex justify-center items-center'>
-          <DotLottieReact
-    src="/animations/Reviews.lottie"
-    autoplay
-    loop
-    className="h-48 w-48 transition-transform duration-500 group-hover:scale-110"
-  />
-        </div>
+       
         
         <div className="mt-14">
 

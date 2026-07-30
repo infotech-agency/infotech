@@ -89,7 +89,7 @@ export default function WhyChooseUs() {
       {/* Wave SVG Background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
-          src="/svg/blob.svg" // Make sure your SVG is in the public folder
+          src="/svg/blob2.svg" // Make sure your SVG is in the public folder
           alt="Background wave"
           fill
           className="object-cover"
