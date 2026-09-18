@@ -1,22 +1,19 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Reveal, Stagger, StaggerItem } from '@/components/common/Reveal';
+import { Reveal } from '@/components/common/Reveal';
 import Counter from '@/components/common/Counter';
-// Importing icons (Assuming lucide-react. Run: npm install lucide-react)
 import { Trophy, Users, Rocket, Award, CheckCircle, Sparkles } from 'lucide-react';
 import { BASE_URL } from '@/utils/baseUrl';
-import Image from 'next/image';
 
 interface AchievementItem {
   _id: string;
   label: string;
   value: number;
   suffix: string;
-  icon: string; // e.g., "trophy", "users", "rocket"
+  icon: string;
   description?: string;
 }
 
-// Helper to map API string to actual Icon Component
 const IconMap: Record<string, any> = {
   trophy: Trophy,
   users: Users,
@@ -26,6 +23,34 @@ const IconMap: Record<string, any> = {
   sparkles: Sparkles
 };
 
+/**
+ * Inline SVG background (encoded as data URI) so no extra file is needed.
+ * Rose (#F43F5E) with darker quadrants and gradient polygons.
+ */
+const BG_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
+<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'>
+  <rect fill='#F43F5E' width='200' height='200'/>
+  <defs>
+    <linearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'>
+      <stop offset='0' stop-color='#000' stop-opacity='0'/>
+      <stop offset='1' stop-color='#000' stop-opacity='1'/>
+    </linearGradient>
+    <linearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'>
+      <stop offset='0' stop-color='#000' stop-opacity='0'/>
+      <stop offset='1' stop-color='#000' stop-opacity='1'/>
+    </linearGradient>
+  </defs>
+  <g fill='#d91f4a' fill-opacity='0.6'>
+    <rect x='100' width='100' height='100'/>
+    <rect y='100' width='100' height='100'/>
+  </g>
+  <g fill-opacity='0.5'>
+    <polygon fill='url(#a)' points='100 30 0 0 200 0'/>
+    <polygon fill='url(#b)' points='100 100 0 130 0 100 200 100 200 130'/>
+  </g>
+</svg>
+`)}`;
+
 export default function Achievements() {
   const [achievements, setAchievements] = useState<AchievementItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,10 +58,9 @@ export default function Achievements() {
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        // http://localhost:5000/api/counters
         const response = await fetch(`${BASE_URL}/counters`);
         const result = await response.json();
-        
+
         if (result.success && result.data) {
           const sortedData = result.data.sort((a: any, b: any) => a.sortOrder - b.sortOrder);
           setAchievements(sortedData);
@@ -52,106 +76,74 @@ export default function Achievements() {
   }, []);
 
   return (
-    <section style={{
-    backgroundImage: "url('/hero/svg/mg.svg')",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  }} className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
-      {/* <Image
-    src="/hero/svg/magicpattern.svg"
-    alt=""
-    fill
-    priority={false}
-    className="pointer-events-none absolute inset-0 object-cover opacity-10"
-  /> */}
-      {/* Decorative Background Elements for Marketing Vibe */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-electric/10 blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
-      </div>
-
+    <section
+      style={{
+        backgroundColor: "#F43F5E",
+        backgroundImage: `url("${BG_SVG}")`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "200px 200px",
+        backgroundPosition: "center",
+      }}
+      className="relative overflow-hidden py-20 lg:py-28"
+    >
       <div className="container relative z-10 mx-auto px-4">
-        {/* Header Section */}
-        <Reveal className="mx-auto mb-16 max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-electric/20 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-wider text-electric shadow-sm">
-            <Sparkles className="h-4 w-4" />
-            Our Achievements
-          </div>
+        {/* Header — plain, no eyebrow chrome, no highlighted word */}
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Numbers That Speak for{" "}
-            {/* <span className="bg-gradient-to-r from-electric to-primary bg-clip-text text-transparent">
-              Themselves
-            </span> */}
-             <span className="relative inline-flex items-center rounded bg-gradient-to-r from-electric  to-indigo-600 px-5 py-2 text-white shadow-lg shadow-electric/30">
-    Themselves
-  </span>
+            The numbers behind 12 years of growth
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white">
-            Over 12 years, we have helped 500+ brands achieve measurable growth
-            through data-driven digital marketing strategies.
+          <p className="mt-4 text-lg leading-relaxed text-white/80">
+            500+ brands, one consistent outcome: measurable results from
+            data-driven digital marketing.
           </p>
-        </Reveal>
+        </div>
 
-        {/* Loading State */}
-        {loading ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[...Array(4)].map((_, index) => (
-              <div key={index} className="h-64 animate-pulse rounded-3xl border border-slate-100 bg-white/50 p-8 shadow-sm">
-                <div className="mx-auto mb-6 h-16 w-16 rounded-2xl bg-slate-200"></div>
-                <div className="mx-auto h-10 w-24 rounded-lg bg-slate-200"></div>
-                <div className="mx-auto mt-4 h-4 w-32 rounded bg-slate-200"></div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Dynamic Data Content */
-          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {achievements.map((item) => {
-              const Icon = IconMap[item.icon?.toLowerCase()] || Award; // Fallback icon
-              
-              return (
-                <StaggerItem key={item._id}>
-                  <div className="group relative h-full overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-electric/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
-                    
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-electric/0 to-primary/0 opacity-0 transition-opacity duration-500 group-hover:from-electric/5 group-hover:to-primary/5 group-hover:opacity-100"></div>
-                    
-                    {/* Top Accent Line on Hover */}
-                    <div className="absolute top-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-electric to-primary transition-all duration-500 group-hover:w-1/2"></div>
+        {/* Stat strip — one surface, not a grid of identical cards */}
+        <Reveal className="relative mx-auto mt-16 max-w-5xl">
+          {/* single deliberate glow, not symmetric corner decoration */}
+          <div className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-40 -translate-y-1/2 bg-white/10 blur-3xl" />
 
-                    <div className="relative z-10 flex flex-col items-center">
-                      {/* Icon Container */}
-                      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 text-electric transition-all duration-500 group-hover:from-electric group-hover:to-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-electric/30">
-                        <Icon className="h-8 w-8" strokeWidth={1.5} />
-                      </div>
+          {loading ? (
+            <div className="grid grid-cols-2 gap-y-10 border-y border-white/20 py-10 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className="flex flex-col items-center gap-3 px-6">
+                  <div className="h-6 w-6 animate-pulse rounded-full bg-white/20" />
+                  <div className="h-10 w-20 animate-pulse rounded bg-white/20" />
+                  <div className="h-3 w-28 animate-pulse rounded bg-white/20" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-y-10 border-y border-white/20 py-10 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
+              {achievements.map((item) => {
+                const Icon = IconMap[item.icon?.toLowerCase()] || Award;
 
-                      {/* Counter Value */}
-                      <div className="text-4xl font-semibold tracking-tight text-brand lg:text-5xl">
-                        <Counter value={item.value} suffix={item.suffix} />
-                      </div>
+                return (
+                  <div
+                    key={item._id}
+                    className="flex flex-col items-center gap-3 px-6 text-center"
+                  >
+                    <Icon className="h-6 w-6 text-white/70" strokeWidth={1.5} />
 
-                      {/* Divider */}
-                      <div className="my-4 h-[2px] w-12 bg-slate-100 transition-all duration-500 group-hover:w-20 group-hover:bg-electric/20"></div>
-
-                      {/* Label */}
-                      <div className="text-base font-semibold uppercase tracking-wider text-brand">
-                        {item.label}
-                      </div>
-
-                      {/* Description */}
-                      {item.description && (
-                        <p className="mt-2 text-sm text-slate-500 leading-relaxed">
-                          {item.description}
-                        </p>
-                      )}
+                    <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+                      <Counter value={item.value} suffix={item.suffix} />
                     </div>
+
+                    <div className="text-sm font-medium text-white/80">
+                      {item.label}
+                    </div>
+
+                    {item.description && (
+                      <p className="text-xs leading-relaxed text-white/60">
+                        {item.description}
+                      </p>
+                    )}
                   </div>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
-        )}
+                );
+              })}
+            </div>
+          )}
+        </Reveal>
       </div>
     </section>
   );

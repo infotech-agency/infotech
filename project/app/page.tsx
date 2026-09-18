@@ -23,6 +23,8 @@ import ScrollStack from '@/components/ui/scroll-stack';
 import GlobalReach from '@/components/home/GlobalReach';
 import WmeStyleHero from '@/components/common/WmeStyleHero';
 import LilAbout from '@/components/home/LilAbout';
+import SmartStrategiesSection from '@/components/sections/Smartstrategiessection';
+import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 
 export default function HomePage() {
   const cards = [
@@ -62,12 +64,17 @@ export default function HomePage() {
 
   return (
     <>
+      <FloatingContactButtons
+      whatsappNumber="919220147497"   // country code, no + ya spaces
+  phoneNumber="+919220147497"
+      />
       <Hero />
+
       {/* <WmeStyleHero/> */}
       <TrustedBy />
 
       <Achievements />
-
+      <SmartStrategiesSection/>
       {/* <ScrollStack cards={cards}/> */}
       <LilAbout/>
       <WhyChooseUs />
@@ -76,14 +83,14 @@ export default function HomePage() {
       <FeaturedCaseStudies />
       <TestimonialsSlider />
       <Process />
-      <ResultsStats />
-      <MarketingSolutions />
+      {/* <ResultsStats /> */}
+      {/* <MarketingSolutions /> */}
       {/* <TeamPreview /> */}
-      <AwardsRecognition />
-      <Delhi/>
+      {/* <AwardsRecognition /> */}
+      {/* <Delhi/> */}
       <LatestBlogs />
       <HomeFAQ />
-      <GlobalReach/>
+  
       <CareersCta/>
       <Technologies/>
       <CTABanner />
