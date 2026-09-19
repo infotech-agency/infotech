@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import AnnouncementBar from '@/components/layout/AnnouncementBar';
+
 import { BASE_URL } from '@/utils/baseUrl';
 
 const poppins = Poppins({
@@ -255,8 +255,6 @@ export default async function RootLayout({
 
         {/* Body Scripts — rendered right after <body> opens */}
         {renderHeadElements(bodyNodes, 'body')}
-
-        <AnnouncementBar />
         <Header />
         <main>{children}</main>
         <Footer />
