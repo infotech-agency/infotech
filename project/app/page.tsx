@@ -93,7 +93,7 @@ export default function HomePage() {
   
       <CareersCta/>
       <Technologies/>
-      <CTABanner />
+      {/* <CTABanner /> */}
     </>
   );
 }

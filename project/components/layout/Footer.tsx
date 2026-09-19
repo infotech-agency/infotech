@@ -292,7 +292,7 @@ export default function Footer() {
   }}
 >
   <div
-    className="relative bg-gradient-to-br from-[#3e9b05] to-[#6fdf29] p-8 pr-10 h-full min-h-[30px] flex flex-col justify-center"
+    className="relative bg-gradient-to-br from-[#0129FF] to-[#031143] p-8 pr-10 h-full min-h-[30px] flex flex-col justify-center"
     style={{
       clipPath:
         'polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%)',
