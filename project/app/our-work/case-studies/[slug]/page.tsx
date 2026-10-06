@@ -418,7 +418,7 @@ export default async function CaseStudyDetailPage({
         </div>
       </section>
 
-      {/* <CTABanner /> */}
+     
     </>
   );
 }

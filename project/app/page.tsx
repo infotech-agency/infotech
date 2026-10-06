@@ -16,6 +16,7 @@ import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 import CircularCarousel from '@/components/animation/CircularCarouselItem';
 import FallingText from '@/components/animation/FallingText';
 import AgencyGrowthChart from '@/components/animation/AgencyGrowthChart ';
+import ServicesSection from '@/components/home/Servicessection';
 
 export default function HomePage() {
   const items = [
@@ -79,44 +80,15 @@ export default function HomePage() {
   phoneNumber="+919220147497"
       />
       <Hero />
-
-      {/* <WmeStyleHero/> */}
-      <div style={{ width: '100%', height: '560px', position: 'relative' }}>
-  <CircularCarousel
-    items={items}
-    preset="cylinder"
-    intro="rise"
-    cardWidth={220}
-    aspectRatio={1}
-    speed={14}
-    captions={false}
-    gap={25}
-    tilt={-5}
-    curve={1}
-    perspective={2500}
-    autoplay="drift"
-    interval={3}
-    direction="left"
-    momentum={0.6}
-    snap
-    pauseOnHover
-    focusOnClick
-    draggable
-    parallax={0.3}
-    stretch={0.5}
-    fadeColor="#000000"
-    depthFade={0.55}
-    innerShade={0.6}
-    cornerRadius={12}
-/>
-</div>
+       <LilAbout/>
+   
 
       <TrustedBy />
-
+      <ServicesSection/>
       <Achievements />
       <SmartStrategiesSection/>
       {/* <ScrollStack cards={cards}/> */}
-      <LilAbout/>
+     
       <WhyChooseUs />
       {/* <ServicesGrid /> */}
       {/* <IndustryExpertise /> */}
