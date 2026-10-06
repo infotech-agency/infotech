@@ -30,30 +30,29 @@ export default function FloatingContactButtons({
   )}`;
   const callHref = `tel:${phoneNumber}`;
 
+  // Labels are absolutely positioned (out of layout flow) and never
+  // catch the mouse, so the hover area is ONLY the round icons.
+  const labelClass = (visible: boolean) =>
+    `pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[#111827] px-3 py-1.5 text-sm font-medium text-white shadow-lg transition-all duration-200 ${
+      visible ? "translate-x-0 opacity-100" : "translate-x-2 opacity-0"
+    }`;
+
   return (
-    <div
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
-      onMouseEnter={() => setShowLabels(true)}
-      onMouseLeave={() => setShowLabels(false)}
-    >
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* WhatsApp */}
       <a
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
+        onMouseEnter={() => setShowLabels(true)}
+        onMouseLeave={() => setShowLabels(false)}
+        onFocus={() => setShowLabels(true)}
+        onBlur={() => setShowLabels(false)}
         className="group relative flex items-center"
       >
-        <span
-          className={`mr-3 whitespace-nowrap rounded-lg bg-[#111827] px-3 py-1.5 text-sm font-medium text-white shadow-lg transition-all duration-200 ${
-            showLabels
-              ? "translate-x-0 opacity-100"
-              : "pointer-events-none translate-x-2 opacity-0"
-          }`}
-        >
-          Chat on WhatsApp
-        </span>
-       
+        <span className={labelClass(showLabels)}>Chat on WhatsApp</span>
+
         <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
           {/* <WhatsAppIcon className="h-7 w-7" /> */}
           <Image alt="wtsapp" height={50} width={50} src={'https://www.freeiconspng.com/thumbs/logo-whatsapp-png/logo-whatsapp-png-image-2.png'}/>
@@ -64,17 +63,14 @@ export default function FloatingContactButtons({
       <a
         href={callHref}
         aria-label="Call us"
+        onMouseEnter={() => setShowLabels(true)}
+        onMouseLeave={() => setShowLabels(false)}
+        onFocus={() => setShowLabels(true)}
+        onBlur={() => setShowLabels(false)}
         className="group relative flex items-center"
       >
-        <span
-          className={`mr-3 whitespace-nowrap rounded-lg bg-[#111827] px-3 py-1.5 text-sm font-medium text-white shadow-lg transition-all duration-200 ${
-            showLabels
-              ? "translate-x-0 opacity-100"
-              : "pointer-events-none translate-x-2 opacity-0"
-          }`}
-        >
-          Call us now
-        </span>
+        <span className={labelClass(showLabels)}>Call us now</span>
+
         <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#F43F5E] text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
           <Phone className="h-6 w-6" strokeWidth={2} />
         </span>

@@ -472,13 +472,13 @@ export default function Header() {
                         <TrendingUp className="h-4 w-4 text-[#0868A0]" />
                         Case Studies
                       </Link>
-                      <Link
+                      {/* <Link
                         href="/our-work/testimonials"
                         className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-black transition-colors hover:bg-sky"
                       >
                         <HeartPulse className="h-4 w-4 text-[#0868A0]" />
                         Testimonials
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 )}

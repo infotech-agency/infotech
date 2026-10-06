@@ -351,7 +351,7 @@ export default async function CaseStudiesPage() {
         </div>
       </section>
 
-      <CTABanner />
+     
     </>
   );
 }

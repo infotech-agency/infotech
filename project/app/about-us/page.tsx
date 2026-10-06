@@ -137,27 +137,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="bg-sky py-20 lg:py-28">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            eyebrow="Our Journey"
-            title="12 Years of Growth"
-            description="From a small consultancy to a full-service agency trusted by 500+ brands."
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {milestones.map((m, i) => (
-              <Reveal key={m.year} delay={i * 0.08}>
-                <div className="relative rounded-2xl border border-border bg-white p-7 shadow-premium">
-                  <div className="text-3xl font-bold gradient-text">{m.year}</div>
-                  <h3 className="mt-3 text-lg font-bold text-brand">{m.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{m.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      
+    
 
       {/* Team */}
       {/* <section className="bg-white py-20 lg:py-28">
@@ -197,12 +178,7 @@ export default function AboutPage() {
       {/* Awards */}
       <AwardsRecognition/>
 
-      <CTABanner
-        title="Want to Work with Us?"
-        description="Whether you are looking for a growth partner or a career, we would love to hear from you."
-        buttonText="Get Free Proposal"
-        secondaryText="View Careers"
-      />
+      
     </>
   );
 }

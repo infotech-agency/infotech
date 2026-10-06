@@ -1,169 +1,7 @@
-
-
-// 'use client';
-
-// import { useState, useEffect, type ReactNode } from 'react';
-// import SectionHeading from '@/components/common/SectionHeading';
-// import FAQAccordion from '@/components/common/FAQAccordion';
-// import { BASE_URL } from '@/utils/baseUrl';
-
-// // API URL
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-
-// interface FAQ {
-//   _id: string;
-//   question: string;
-//   answer: string;
-//   category: string;
-//   sortOrder: number;
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
-// // Shared shell so the background SVG only has to be defined once and stays
-// // identical across the loading / error / success states below.
-// function FAQSectionShell({ children }: { children: ReactNode }) {
-//   return (
-//     <section className="relative overflow-hidden bg-sky py-20 lg:py-28">
-//       {/* Background SVG layer — swap the src below for your own artwork.
-//           Sits behind everything (z-0); content is pinned above it (z-10). */}
-//       <div className="pointer-events-none absolute inset-0 z-0">
-//         <img
-//           src="/images/faq.svg" // 👈 apna SVG path yahan daalo
-//           alt=""
-//           className="h-full w-full object-cover opacity-100"
-//         />
-//         {/* Optional soft wash so accordion text stays fully readable
-//             over a busy or high-contrast SVG. Tweak/remove as needed. */}
-//         <div className="absolute inset-0 bg-sky/80" />
-//       </div>
-
-//       <div className="container relative z-10 mx-auto px-4">{children}</div>
-//     </section>
-//   );
-// }
-
-// export default function HomeFAQ() {
-//   const [faqs, setFaqs] = useState<FAQ[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     const fetchFaqs = async () => {
-//       try {
-//         setLoading(true);
-//         const response = await fetch(`${BASE_URL}/faqs?limit=20`);
-//         const data = await response.json();
-
-//         if (data.success && data.data) {
-//           // Sort by sortOrder if available
-//           const sortedFaqs = data.data.sort((a: FAQ, b: FAQ) => {
-//             return (a.sortOrder || 0) - (b.sortOrder || 0);
-//           });
-//           setFaqs(sortedFaqs);
-//         } else {
-//           setError('Failed to fetch FAQs');
-//         }
-//       } catch (err) {
-//         console.error('Error fetching FAQs:', err);
-//         setError('Failed to load FAQs');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchFaqs();
-//   }, []);
-
-//   // Transform API FAQ format to match FAQAccordion expected format
-//   const transformFaqs = (apiFaqs: FAQ[]) => {
-//     return apiFaqs.map((faq) => ({
-//       question: faq.question,
-//       answer: faq.answer,
-//     }));
-//   };
-
-//   if (loading) {
-//     return (
-//       <FAQSectionShell>
-//         <SectionHeading
-//           eyebrow="FAQ"
-//           title="Frequently Asked Questions"
-//           description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-//         />
-//         <div className="mt-14 space-y-4">
-//           {[1, 2, 3, 4, 5].map((i) => (
-//             <div
-//               key={i}
-//               className="animate-pulse rounded-2xl border border-border bg-white p-6 shadow-premium"
-//             >
-//               <div className="flex items-center justify-between">
-//                 <div className="h-6 w-3/4 rounded bg-gray-200"></div>
-//                 <div className="h-5 w-5 rounded bg-gray-200"></div>
-//               </div>
-//               <div className="mt-3 h-4 w-full rounded bg-gray-200"></div>
-//               <div className="mt-2 h-4 w-2/3 rounded bg-gray-200"></div>
-//             </div>
-//           ))}
-//         </div>
-//       </FAQSectionShell>
-//     );
-//   }
-
-//   if (error || faqs.length === 0) {
-//     return (
-//       <FAQSectionShell>
-//         <SectionHeading
-//           eyebrow="FAQ"
-//           title="Frequently Asked Questions"
-//           description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-//         />
-//         <div className="mt-14 text-center">
-//           <p className="text-muted-foreground">
-//             {error || 'No FAQs available at the moment.'}
-//           </p>
-//           <div className="mt-6">
-//             <a
-//               href="/contact"
-//               className="inline-flex items-center gap-2 bg-ocean px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
-//             >
-//               Contact Us
-//             </a>
-//           </div>
-//         </div>
-//       </FAQSectionShell>
-//     );
-//   }
-
-//   return (
-//     <FAQSectionShell>
-//       <SectionHeading
-//         eyebrow="FAQ"
-//         title="Frequently Asked Questions"
-//         description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-//       />
-//       <div className="mt-14">
-//         <FAQAccordion items={transformFaqs(faqs)} />
-//       </div>
-
-//       {/* Optional: Show categories or additional info */}
-//       {faqs.length > 0 && (
-//         <div className="mt-8 text-center">
-//           <p className="text-sm text-muted-foreground">
-//             Can&apos;t find what you&apos;re looking for?{' '}
-//             <a href="/contact" className="font-semibold text-electric hover:underline">
-//               Contact our team
-//             </a>
-//           </p>
-//         </div>
-//       )}
-//     </FAQSectionShell>
-//   );
-// }
-
 'use client';
 
 import { useState, useEffect, type ReactNode } from 'react';
+import { HelpCircle, ArrowRight } from 'lucide-react';
 import SectionHeading from '@/components/common/SectionHeading';
 import FAQAccordion from '@/components/common/FAQAccordion';
 import { BASE_URL } from '@/utils/baseUrl';
@@ -186,6 +24,13 @@ interface GroupedFaq {
   faqs: FAQ[];
 }
 
+const HEADING = {
+  eyebrow: 'FAQ',
+  title: 'Frequently Asked Questions',
+  description:
+    'Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help.',
+};
+
 function FAQSectionShell({ children }: { children: ReactNode }) {
   return (
     <section className="relative overflow-hidden bg-sky py-20 lg:py-28">
@@ -199,6 +44,15 @@ function FAQSectionShell({ children }: { children: ReactNode }) {
       </div>
       <div className="container relative z-10 mx-auto px-4">{children}</div>
     </section>
+  );
+}
+
+/** Main white box that wraps everything */
+function FAQBox({ children }: { children: ReactNode }) {
+  return (
+    <div className="mx-auto mt-14 max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_-20px_rgba(15,23,42,0.25)]">
+      {children}
+    </div>
   );
 }
 
@@ -242,103 +96,140 @@ export default function HomeFAQ() {
       .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
       .map((faq) => ({ question: faq.question, answer: faq.answer }));
 
+  /* ---------- Loading ---------- */
   if (loading) {
     return (
       <FAQSectionShell>
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Frequently Asked Questions"
-          description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-        />
-        <div className="mt-14 space-y-4">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              className="animate-pulse rounded-2xl border border-border bg-white p-6 shadow-premium"
-            >
-              <div className="flex items-center justify-between">
-                <div className="h-6 w-3/4 rounded bg-gray-200"></div>
-                <div className="h-5 w-5 rounded bg-gray-200"></div>
-              </div>
-              <div className="mt-3 h-4 w-full rounded bg-gray-200"></div>
-              <div className="mt-2 h-4 w-2/3 rounded bg-gray-200"></div>
+        <SectionHeading {...HEADING} />
+        <FAQBox>
+          <div className="grid lg:grid-cols-[280px_1fr]">
+            <div className="flex gap-2 border-b border-slate-200 bg-slate-50 p-4 lg:flex-col lg:border-b-0 lg:border-r lg:p-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-11 w-32 animate-pulse rounded-xl bg-slate-200 lg:w-full" />
+              ))}
             </div>
-          ))}
-        </div>
+            <div className="space-y-3 p-6 lg:p-8">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="animate-pulse rounded-xl border border-slate-200 p-5">
+                  <div className="h-5 w-3/4 rounded bg-slate-200" />
+                  <div className="mt-3 h-3 w-full rounded bg-slate-100" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </FAQBox>
       </FAQSectionShell>
     );
   }
 
+  /* ---------- Error / Empty ---------- */
   if (error || groups.length === 0) {
     return (
       <FAQSectionShell>
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Frequently Asked Questions"
-          description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-        />
-        <div className="mt-14 text-center">
-          <p className="text-muted-foreground">
-            {error || 'No FAQs available at the moment.'}
-          </p>
-          <div className="mt-6">
-            
-            <a  href="/contact"
-              className="inline-flex items-center gap-2 bg-ocean px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
+        <SectionHeading {...HEADING} />
+        <FAQBox>
+          <div className="px-6 py-14 text-center">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
+              <HelpCircle className="h-7 w-7 text-slate-400" />
+            </div>
+            <p className="text-muted-foreground">
+              {error || 'No FAQs available at the moment.'}
+            </p>
+            <a
+              href="/contact"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-ocean px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
             >
               Contact Us
             </a>
           </div>
-        </div>
+        </FAQBox>
       </FAQSectionShell>
     );
   }
 
+  /* ---------- Main ---------- */
   return (
     <FAQSectionShell>
-      <SectionHeading
-        eyebrow="FAQ"
-        title="Frequently Asked Questions"
-        description="Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help."
-      />
+      <SectionHeading {...HEADING} />
 
-      <div className="mt-14 flex flex-col gap-8 lg:flex-row">
-        {/* Left side — vertical category tabs */}
-        <div className="lg:w-64 lg:flex-shrink-0">
-          <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
-            {groups.map((g) => {
-              const isActive = g.category._id === activeCategoryId;
-              return (
-                <button
-                  key={g.category._id}
-                  onClick={() => setActiveCategoryId(g.category._id)}
-                  className={`whitespace-nowrap rounded-full px-5 py-3 text-left text-sm font-semibold transition-all lg:whitespace-normal lg:rounded-xl ${
-                    isActive
-                      ? 'bg-ocean text-white shadow-premium'
-                      : 'bg-white text-gray-600 hover:bg-ocean/10'
-                  }`}
-                >
-                  {g.category.name}
-                </button>
-              );
-            })}
+      <FAQBox>
+        <div className="grid lg:grid-cols-[280px_1fr]">
+          {/* LEFT — category sidebar */}
+          <aside className="border-b border-slate-200 bg-slate-50 p-4 lg:border-b-0 lg:border-r lg:p-6">
+            <p className="mb-3 hidden text-xs font-semibold uppercase tracking-wider text-slate-400 lg:block">
+              Categories
+            </p>
+
+            <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+              {groups.map((g) => {
+                const isActive = g.category._id === activeCategoryId;
+                return (
+                  <button
+                    key={g.category._id}
+                    onClick={() => setActiveCategoryId(g.category._id)}
+                    className={`flex shrink-0 items-center justify-between gap-3 whitespace-nowrap rounded-xl px-4 py-3 text-left text-sm font-semibold transition-all duration-300 lg:whitespace-normal ${
+                      isActive
+                        ? 'bg-ocean text-white shadow-md'
+                        : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-ocean/5 hover:text-ocean hover:ring-ocean/30'
+                    }`}
+                  >
+                    <span>{g.category.name}</span>
+                    <span
+                      className={`flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-bold ${
+                        isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                      }`}
+                    >
+                      {g.faqs.length}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
+
+          {/* RIGHT — active category's FAQs */}
+          <div className="p-6 lg:p-8">
+            {activeGroup && (
+              <>
+                <div className="mb-6 flex items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                  <div>
+                    <h3 className="text-xl font-bold text-brand">
+                      {activeGroup.category.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {activeGroup.faqs.length}{' '}
+                      {activeGroup.faqs.length === 1 ? 'question' : 'questions'}
+                    </p>
+                  </div>
+                  <div className="hidden h-11 w-11 items-center justify-center rounded-full bg-ocean/10 sm:flex">
+                    <HelpCircle className="h-5 w-5 text-ocean" />
+                  </div>
+                </div>
+
+                {/* key resets accordion state when category changes */}
+                <FAQAccordion
+                  key={activeGroup.category._id}
+                  items={transformFaqs(activeGroup.faqs)}
+                />
+              </>
+            )}
           </div>
         </div>
 
-        {/* Right side — active category's FAQs */}
-        <div className="flex-1">
-          {activeGroup && <FAQAccordion items={transformFaqs(activeGroup.faqs)} />}
-        </div>
-      </div>
-
-      <div className="mt-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          Can&apos;t find what you&apos;re looking for?{' '}
-          <a href="/contact" className="font-semibold text-electric hover:underline">
+        {/* Bottom contact strip */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-200 bg-slate-50 px-6 py-5 text-center sm:flex-row sm:text-left lg:px-8">
+          <p className="text-sm text-slate-600">
+            Can&apos;t find what you&apos;re looking for? Our team is happy to help.
+          </p>
+          <a
+            href="/contact"
+            className="group inline-flex items-center gap-2 rounded-lg bg-ocean px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
+          >
             Contact our team
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
-        </p>
-      </div>
+        </div>
+      </FAQBox>
     </FAQSectionShell>
   );
 }
