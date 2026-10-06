@@ -14,8 +14,6 @@ import LilAbout from '@/components/home/LilAbout';
 import SmartStrategiesSection from '@/components/sections/Smartstrategiessection';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 import CircularCarousel from '@/components/animation/CircularCarouselItem';
-import FallingText from '@/components/animation/FallingText';
-import AgencyGrowthChart from '@/components/animation/AgencyGrowthChart ';
 import ServicesSection from '@/components/home/Servicessection';
 
 export default function HomePage() {
@@ -76,16 +74,18 @@ export default function HomePage() {
   return (
     <>
       <FloatingContactButtons
-      whatsappNumber="919220147497"   // country code, no + ya spaces
+      whatsappNumber="919220147497"  
   phoneNumber="+919220147497"
       />
       <Hero />
+      <TrustedBy />
+         <Achievements />
        <LilAbout/>
    
 
-      <TrustedBy />
+      
       <ServicesSection/>
-      <Achievements />
+   
       <SmartStrategiesSection/>
       {/* <ScrollStack cards={cards}/> */}
      
@@ -103,7 +103,6 @@ export default function HomePage() {
       <LatestBlogs />
       <HomeFAQ />
   
-      <CareersCta/>
       <Technologies/>
       
       {/* <CTABanner /> */}
