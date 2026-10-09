@@ -31,16 +31,59 @@ const HEADING = {
     'Everything you need to know about working with Infotech Agency. Still have questions? Reach out — we are happy to help.',
 };
 
+// function FAQSectionShell({ children }: { children: ReactNode }) {
+//   return (
+//     <section className="relative overflow-hidden bg-sky py-20 lg:py-28">
+//       <div className="pointer-events-none absolute inset-0 z-0">
+//         <img
+//           src="/images/faq.svg"
+//           alt=""
+//           className="h-full w-full object-cover opacity-100"
+//         />
+//         <div className="absolute inset-0 bg-sky/80" />
+//       </div>
+//       <div className="container relative z-10 mx-auto px-4">{children}</div>
+//     </section>
+//   );
+// }
+
+/** 4-point sparkle star */
+function Sparkle({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 0 C12.8 6.5 17.5 11.2 24 12 C17.5 12.8 12.8 17.5 12 24 C11.2 17.5 6.5 12.8 0 12 C6.5 11.2 11.2 6.5 12 0 Z" />
+    </svg>
+  );
+}
+
 function FAQSectionShell({ children }: { children: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-sky py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#2b8be0] via-[#a8e8dc] to-[#3fd58f] py-20 lg:py-28">
       <div className="pointer-events-none absolute inset-0 z-0">
-        <img
-          src="/images/faq.svg"
-          alt=""
-          className="h-full w-full object-cover opacity-100"
-        />
-        <div className="absolute inset-0 bg-sky/80" />
+        {/* big soft circles */}
+        <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-white/20 blur-2xl" />
+        <div className="absolute right-[-6rem] top-1/3 h-96 w-96 rounded-full bg-white/25 blur-3xl" />
+        <div className="absolute -bottom-28 left-1/4 h-80 w-80 rounded-full bg-[#0868A0]/15 blur-3xl" />
+
+        {/* ring circles */}
+        <div className="absolute left-[8%] top-[18%] h-24 w-24 rounded-full border border-white/50" />
+        <div className="absolute bottom-[14%] right-[10%] h-40 w-40 rounded-full border border-white/40" />
+        <div className="absolute right-[28%] top-[8%] h-3 w-3 rounded-full bg-white/70" />
+        <div className="absolute bottom-[26%] left-[14%] h-4 w-4 rounded-full bg-white/60" />
+        <div className="absolute left-[46%] top-[40%] h-2 w-2 rounded-full bg-white/70" />
+
+        {/* sparkles */}
+        <Sparkle className="absolute left-[6%] top-[10%] h-8 w-8 text-white/90" />
+        <Sparkle className="absolute right-[8%] top-[14%] h-12 w-12 text-white/80" />
+        <Sparkle className="absolute left-[22%] bottom-[12%] h-6 w-6 text-white/80" />
+        <Sparkle className="absolute right-[22%] bottom-[22%] h-8 w-8 text-white/90" />
+        <Sparkle className="absolute left-[50%] top-[6%] h-5 w-5 text-white/70" />
+        <Sparkle className="absolute right-[4%] bottom-[8%] h-5 w-5 text-white/70" />
       </div>
       <div className="container relative z-10 mx-auto px-4">{children}</div>
     </section>
@@ -130,7 +173,7 @@ export default function HomeFAQ() {
         <FAQBox>
           <div className="px-6 py-14 text-center">
             <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
-              <HelpCircle className="h-7 w-7 text-slate-400" />
+              <HelpCircle className="h-7 w-7 text-slate-900" />
             </div>
             <p className="text-muted-foreground">
               {error || 'No FAQs available at the moment.'}
@@ -156,7 +199,7 @@ export default function HomeFAQ() {
         <div className="grid lg:grid-cols-[280px_1fr]">
           {/* LEFT — category sidebar */}
           <aside className="border-b border-slate-200 bg-slate-50 p-4 lg:border-b-0 lg:border-r lg:p-6">
-            <p className="mb-3 hidden text-xs font-semibold uppercase tracking-wider text-slate-400 lg:block">
+            <p className="mb-3 hidden text-xs font-semibold uppercase tracking-wider text-slate-900 lg:block">
               Categories
             </p>
 
@@ -170,13 +213,13 @@ export default function HomeFAQ() {
                     className={`flex shrink-0 items-center justify-between gap-3 whitespace-nowrap rounded-xl px-4 py-3 text-left text-sm font-semibold transition-all duration-300 lg:whitespace-normal ${
                       isActive
                         ? 'bg-ocean text-white shadow-md'
-                        : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-ocean/5 hover:text-ocean hover:ring-ocean/30'
+                        : 'bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-ocean/5 hover:text-ocean hover:ring-ocean/30'
                     }`}
                   >
                     <span>{g.category.name}</span>
                     <span
                       className={`flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-bold ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                        isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-900'
                       }`}
                     >
                       {g.faqs.length}
@@ -196,7 +239,7 @@ export default function HomeFAQ() {
                     <h3 className="text-xl font-bold text-brand">
                       {activeGroup.category.name}
                     </h3>
-                    <p className="mt-1 text-sm text-slate-500">
+                    <p className="mt-1 text-sm text-slate-900">
                       {activeGroup.faqs.length}{' '}
                       {activeGroup.faqs.length === 1 ? 'question' : 'questions'}
                     </p>
@@ -218,7 +261,7 @@ export default function HomeFAQ() {
 
         {/* Bottom contact strip */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-200 bg-slate-50 px-6 py-5 text-center sm:flex-row sm:text-left lg:px-8">
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-slate-900">
             Can&apos;t find what you&apos;re looking for? Our team is happy to help.
           </p>
           <a

@@ -1,6 +1,3 @@
-
-
-
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -301,15 +298,24 @@ export default function Header() {
     <>
       <TopBar scrolled={scrolled} />
       <header
-        className={cn(
-          'fixed inset-x-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'top-0 bg-white py-3 shadow-[0_4px_24px_rgba(15,28,76,0.1)]'
-            : 
-            'top-0 bg-white py-4 border-b border-border lg:top-10'  
-            // 'top-10 bg-white py-4 border-b border-border'
-        )}
-        onMouseLeave={() => setOpenMenu(null)}
+        // className={cn(
+        //   'fixed inset-x-0 z-50 transition-all duration-300',
+        //   scrolled
+        //     ? 'top-0 bg-white py-3 shadow-[0_4px_24px_rgba(15,28,76,0.1)]'
+        //     : 
+        //     'top-0 bg-white py-4 border-b border-border lg:top-10'  
+        //     // 'top-10 bg-white py-4 border-b border-border'
+        // )}
+        // onMouseLeave={() => setOpenMenu(null)}
+         className={cn(
+    'fixed inset-x-0 z-50 transition-all duration-300',
+    scrolled
+      ? 'top-0 bg-white py-3 shadow-[0_4px_24px_rgba(15,28,76,0.1)]'
+      : mobileOpen
+        ? 'top-0 bg-white py-4'
+        : 'top-0 bg-transparent py-4 lg:top-10'
+  )}
+  onMouseLeave={() => setOpenMenu(null)}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">

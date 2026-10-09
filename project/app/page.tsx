@@ -79,8 +79,9 @@ export default function HomePage() {
       />
       <Hero />
       <TrustedBy />
-         <Achievements />
-       <LilAbout/>
+      <LilAbout/>
+      <Achievements />
+       
    
 
       

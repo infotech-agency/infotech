@@ -437,7 +437,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-4 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-slate-900 sm:text-lg">
             SEO, PPC, web development, and content strategies that deliver
             compounding ROI, not vanity metrics.
           </p>
@@ -446,13 +446,13 @@ export default function Hero() {
           <div className="mt-10 flex flex-col items-center gap-5 sm:flex-row sm:gap-8">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg bg-[#111] px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-[#22BFA6]/20 transition-all hover:-translate-y-0.5 hover:bg-black/80"
+              className="inline-flex items-center justify-center  bg-[#111] px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-[#22BFA6]/20 transition-all hover:-translate-y-0.5 hover:bg-black/80"
             >
               Get Free Proposal
             </Link>
             <Link
               href="/our-work/case-studies"
-              className="group inline-flex items-center gap-2 text-base font-bold text-black"
+              className="group inline-flex border-2 border-black px-8 py-3.5 items-center gap-2 text-base font-bold text-black"
             >
               View Case Studies
               <span className="transition-transform duration-300 group-hover:translate-x-1">

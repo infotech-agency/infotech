@@ -68,8 +68,8 @@ export default function FAQAccordion({
             <div className="overflow-hidden">
               <p
                 className={cn(
-                  'px-6 pb-5 text-base leading-relaxed',
-                  light ? 'text-sky/70' : 'text-muted-foreground'
+                  'px-6 pb-5 text-sm leading-relaxed',
+                  light ? 'text-black' : 'text-black '
                 )}
               >
                 {item.answer}

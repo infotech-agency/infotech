@@ -122,7 +122,7 @@ export default function ServicesSection() {
                     <h3 className="text-xl font-bold text-slate-900">
                       {service.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                    <p className="mt-3 text-sm leading-relaxed text-slate-900">
                       {service.description}
                     </p>
 

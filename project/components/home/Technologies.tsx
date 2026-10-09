@@ -181,7 +181,7 @@ export default function Technologies() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
             Technologies we leverage
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
+          <p className="mt-4 text-base leading-relaxed text-slate-900">
             Cutting-edge frameworks, databases, and tools we use to build
             scalable websites, high-performance web applications, and robust
             CMS platforms.

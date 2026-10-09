@@ -160,7 +160,7 @@ export default function WhyChooseUs() {
                     <h3 className="text-xl font-bold text-brand transition-colors duration-300 group-hover:text-[#6BAB44]">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                    <p className="mt-3 text-base leading-relaxed ">
                       {item.description}
                     </p>
                   </div>
