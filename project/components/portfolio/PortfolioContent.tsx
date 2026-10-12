@@ -1,14 +1,254 @@
+// 'use client';
+
+// import { useState, useEffect } from 'react';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import { AlertCircle, FolderOpen, ArrowUpRight, Calendar } from 'lucide-react';
+// import PageHero from '@/components/common/PageHero';
+// import { Stagger, StaggerItem } from '@/components/common/Reveal';
+// import { BASE_URL } from '@/utils/baseUrl';
+
+// // Types based on your API response
+// interface Project {
+//   _id: string;
+//   title: string;
+//   slug: string;
+//   clientName: string;
+//   websiteUrl: string;
+//   technology: string[];
+//   description: string;
+//   thumbnail: {
+//     public_id: string;
+//     secure_url: string;
+//   };
+//   completionDate: string;
+//   featured: boolean;
+//   metaTitle: string;
+//   metaDescription: string;
+//   status: string;
+//   gallery: any[];
+//   createdAt: string;
+//   updatedAt: string;
+//   __v: number;
+// }
+
+// const HERO = {
+//   breadcrumb: 'Portfolio',
+//   title: 'Our Work Speaks for Itself',
+//   description:
+//     'Explore a selection of brands we have helped grow through data-driven digital marketing. From startups to enterprises, the results speak.',
+//   image:
+//     'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop',
+// };
+
+// const GRID = 'grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3';
+
+// export default function PortfolioContent() {
+//   const [projects, setProjects] = useState<Project[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+
+//   // Fetch projects from API
+//   useEffect(() => {
+//     const fetchProjects = async () => {
+//       try {
+//         setLoading(true);
+//         const response = await fetch(`${BASE_URL}/projects`);
+//         const result = await response.json();
+
+//         if (result.success) {
+//           const publishedProjects = result.data.filter(
+//             (project: Project) => project.status === 'published'
+//           );
+//           setProjects(publishedProjects);
+//         } else {
+//           setError('Failed to fetch projects');
+//         }
+//       } catch (err) {
+//         setError('Error fetching projects');
+//         console.error('Fetch error:', err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchProjects();
+//   }, []);
+
+//   // Loading state
+//   if (loading) {
+//     return (
+//       <>
+//         <PageHero {...HERO} />
+//         <section className="bg-slate-50 py-20 lg:py-28">
+//           <div className="container mx-auto px-4">
+//             <div className={GRID}>
+//               {[1, 2, 3, 4, 5, 6].map((i) => (
+//                 <div
+//                   key={i}
+//                   className="animate-pulse overflow-hidden rounded-2xl border border-slate-200 bg-white"
+//                 >
+//                   <div className="h-60 bg-slate-100" />
+//                   <div className="space-y-3 p-6">
+//                     <div className="h-4 w-2/3 rounded bg-slate-100" />
+//                     <div className="h-3 w-1/3 rounded bg-slate-100" />
+//                     <div className="h-12 rounded bg-slate-100" />
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+//       </>
+//     );
+//   }
+
+//   // Error state
+//   if (error) {
+//     return (
+//       <>
+//         <PageHero {...HERO} />
+//         <section className="bg-slate-50 py-20 lg:py-28">
+//           <div className="container mx-auto px-4 text-center">
+//             <div className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-10 shadow-sm">
+//               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
+//                 <AlertCircle className="h-7 w-7 text-red-500" />
+//               </div>
+//               <h2 className="text-xl font-bold text-brand">Something went wrong</h2>
+//               <p className="mt-2 text-sm text-slate-500">{error}</p>
+//               <button
+//                 onClick={() => window.location.reload()}
+//                 className="mt-6 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+//               >
+//                 Try again
+//               </button>
+//             </div>
+//           </div>
+//         </section>
+//       </>
+//     );
+//   }
+
+//   return (
+//     <>
+//       <PageHero {...HERO} />
+
+//       <section className="bg-slate-50 py-20 lg:py-28">
+//         <div className="container mx-auto px-4">
+//           {/* No Projects Message */}
+//           {projects.length === 0 ? (
+//             <div className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+//               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
+//                 <FolderOpen className="h-7 w-7 text-slate-400" />
+//               </div>
+//               <h3 className="text-xl font-bold text-brand">No projects found</h3>
+//               <p className="mt-2 text-sm text-slate-500">
+//                 No published projects available at the moment. Please check back later.
+//               </p>
+//             </div>
+//           ) : (
+//             <Stagger className={GRID} stagger={0.06}>
+//               {projects.map((project, idx) => (
+//                 <StaggerItem key={project._id} className="h-full">
+//                   <div
+//                     className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_20px_-8px_rgba(15,23,42,0.1)] transition-all duration-500 hover:-translate-y-2 hover:border-[#6BAB44]/40 hover:shadow-[0_24px_45px_-18px_rgba(107,171,68,0.45)]"
+//                   >
+//                     {/* Top accent bar — slides in on hover */}
+//                     <span className="absolute left-0 top-0 z-20 h-1 w-0 bg-[#6BAB44] transition-all duration-500 group-hover:w-full" />
+
+//                     {/* Image */}
+//                     <div className="relative h-60 overflow-hidden bg-slate-100">
+//                       <Image
+//                         src={project.thumbnail?.secure_url || '/placeholder-project.jpg'}
+//                         alt={project.title}
+//                         fill
+//                         className="object-contain transition-transform duration-700 group-hover:scale-105"
+//                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+//                       />
+
+//                       {/* Soft bottom gradient for depth */}
+//                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
+
+//                       {project.featured && (
+//                         <div className="absolute left-4 top-4 rounded-full bg-[#6BAB44] px-3 py-1 text-[11px] font-semibold text-white shadow-md">
+//                           Featured
+//                         </div>
+//                       )}
+
+//                       {/* Index number */}
+//                       <span className="absolute bottom-3 left-4 text-sm font-semibold text-white/90">
+//                         {String(idx + 1).padStart(2, '0')}
+//                       </span>
+
+//                       {/* Arrow bubble */}
+//                       <span className="absolute bottom-3 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white text-slate-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+//                         <ArrowUpRight className="h-5 w-5" />
+//                       </span>
+//                     </div>
+
+//                     {/* Content */}
+//                     <div className="flex flex-1 flex-col p-6">
+//                       <p className="text-xs font-semibold uppercase tracking-wider text-[#6BAB44]">
+//                         {project.clientName || 'Confidential client'}
+//                       </p>
+
+//                       <h3 className="mt-2 text-xl font-bold leading-snug text-brand transition-colors duration-300 group-hover:text-[#6BAB44]">
+//                         {project.title}
+//                       </h3>
+
+//                       <p className="mt-3 text-sm leading-relaxed text-slate-600 line-clamp-3">
+//                         {project.description}
+//                       </p>
+
+//                       {project.technology && project.technology.length > 0 && (
+//                         <div className="mt-5 flex flex-wrap gap-2">
+//                           {project.technology.slice(0, 3).map((tech) => (
+//                             <span
+//                               key={tech}
+//                               className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
+//                             >
+//                               {tech}
+//                             </span>
+//                           ))}
+//                           {project.technology.length > 3 && (
+//                             <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-400">
+//                               +{project.technology.length - 3} more
+//                             </span>
+//                           )}
+//                         </div>
+//                       )}
+
+//                       {project.completionDate && (
+//                         <div className="mt-auto flex items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-400 [&:not(:first-child)]:mt-6">
+//                           <Calendar className="h-3.5 w-3.5" />
+//                           Completed{' '}
+//                           {new Date(project.completionDate).toLocaleDateString('en-US', {
+//                             year: 'numeric',
+//                             month: 'short',
+//                           })}
+//                         </div>
+//                       )}
+//                     </div>
+//                   </div>
+//                 </StaggerItem>
+//               ))}
+//             </Stagger>
+//           )}
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { AlertCircle, FolderOpen, ArrowUpRight, Calendar } from 'lucide-react';
+import { AlertCircle, FolderOpen } from 'lucide-react';
 import PageHero from '@/components/common/PageHero';
 import { Stagger, StaggerItem } from '@/components/common/Reveal';
 import { BASE_URL } from '@/utils/baseUrl';
 
-// Types based on your API response
 interface Project {
   _id: string;
   title: string;
@@ -47,19 +287,21 @@ export default function PortfolioContent() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Fetch projects from API
+ 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${BASE_URL}/projects`);
+        const response = await fetch(`${BASE_URL}/projects?page=1&limit=50`);
         const result = await response.json();
+ console.log('total from API:', result.data.length, result);
+
 
         if (result.success) {
           const publishedProjects = result.data.filter(
             (project: Project) => project.status === 'published'
           );
+          console.log('published:', publishedProjects.length);
           setProjects(publishedProjects);
         } else {
           setError('Failed to fetch projects');
@@ -88,11 +330,10 @@ export default function PortfolioContent() {
                   key={i}
                   className="animate-pulse overflow-hidden rounded-2xl border border-slate-200 bg-white"
                 >
-                  <div className="h-60 bg-slate-100" />
-                  <div className="space-y-3 p-6">
-                    <div className="h-4 w-2/3 rounded bg-slate-100" />
+                  <div className="aspect-[1350/595] bg-slate-100" />
+                  <div className="space-y-2 p-5">
                     <div className="h-3 w-1/3 rounded bg-slate-100" />
-                    <div className="h-12 rounded bg-slate-100" />
+                    <div className="h-5 w-2/3 rounded bg-slate-100" />
                   </div>
                 </div>
               ))}
@@ -135,7 +376,6 @@ export default function PortfolioContent() {
 
       <section className="bg-slate-50 py-20 lg:py-28">
         <div className="container mx-auto px-4">
-          {/* No Projects Message */}
           {projects.length === 0 ? (
             <div className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
@@ -148,86 +388,37 @@ export default function PortfolioContent() {
             </div>
           ) : (
             <Stagger className={GRID} stagger={0.06}>
-              {projects.map((project, idx) => (
+              {projects.map((project) => (
                 <StaggerItem key={project._id} className="h-full">
-                  <div
-                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_20px_-8px_rgba(15,23,42,0.1)] transition-all duration-500 hover:-translate-y-2 hover:border-[#6BAB44]/40 hover:shadow-[0_24px_45px_-18px_rgba(107,171,68,0.45)]"
-                  >
+                  <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_20px_-8px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[#6BAB44]/40 hover:shadow-[0_24px_45px_-18px_rgba(107,171,68,0.45)]">
                     {/* Top accent bar — slides in on hover */}
                     <span className="absolute left-0 top-0 z-20 h-1 w-0 bg-[#6BAB44] transition-all duration-500 group-hover:w-full" />
 
-                    {/* Image */}
-                    <div className="relative h-60 overflow-hidden bg-slate-100">
+                    {/* Image — locked to 1350x595 ratio, fully filled */}
+                    <div className="relative aspect-[1350/595] w-full overflow-hidden bg-slate-100">
                       <Image
                         src={project.thumbnail?.secure_url || '/placeholder-project.jpg'}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
 
-                      {/* Soft bottom gradient for depth */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-
                       {project.featured && (
-                        <div className="absolute left-4 top-4 rounded-full bg-[#6BAB44] px-3 py-1 text-[11px] font-semibold text-white shadow-md">
+                        <div className="absolute left-3 top-3 rounded-full bg-[#6BAB44] px-3 py-1 text-[11px] font-semibold text-white shadow-md">
                           Featured
                         </div>
                       )}
-
-                      {/* Index number */}
-                      <span className="absolute bottom-3 left-4 text-sm font-semibold text-white/90">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-
-                      {/* Arrow bubble */}
-                      <span className="absolute bottom-3 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white text-slate-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                        <ArrowUpRight className="h-5 w-5" />
-                      </span>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex flex-1 flex-col p-6">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-[#6BAB44]">
+                    {/* Content — only client name + business name */}
+                    <div className="flex flex-1 flex-col gap-1 border-t border-slate-100 px-5 py-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-[#6BAB44]">
                         {project.clientName || 'Confidential client'}
                       </p>
-
-                      <h3 className="mt-2 text-xl font-bold leading-snug text-brand transition-colors duration-300 group-hover:text-[#6BAB44]">
+                      <h3 className="text-lg font-bold leading-snug text-brand transition-colors duration-300 group-hover:text-[#6BAB44]">
                         {project.title}
                       </h3>
-
-                      <p className="mt-3 text-sm leading-relaxed text-slate-600 line-clamp-3">
-                        {project.description}
-                      </p>
-
-                      {project.technology && project.technology.length > 0 && (
-                        <div className="mt-5 flex flex-wrap gap-2">
-                          {project.technology.slice(0, 3).map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.technology.length > 3 && (
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-400">
-                              +{project.technology.length - 3} more
-                            </span>
-                          )}
-                        </div>
-                      )}
-
-                      {project.completionDate && (
-                        <div className="mt-auto flex items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-400 [&:not(:first-child)]:mt-6">
-                          <Calendar className="h-3.5 w-3.5" />
-                          Completed{' '}
-                          {new Date(project.completionDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                          })}
-                        </div>
-                      )}
                     </div>
                   </div>
                 </StaggerItem>
