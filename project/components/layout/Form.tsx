@@ -103,7 +103,7 @@ export default function ContactForm({
 
         <button
           type="submit"
-          className="w-full  bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
+          className="w-full  bg-brand px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
         >
           {buttonText}
         </button>

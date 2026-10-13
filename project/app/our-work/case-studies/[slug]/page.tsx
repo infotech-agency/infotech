@@ -11,9 +11,12 @@ import {
   Tag,
   CheckCircle2,
   Quote,
+  ChevronRight,
 } from 'lucide-react';
 import CTABanner from '@/components/common/CTABanner';
 import { BASE_URL } from '@/utils/baseUrl';
+import PageHero from '@/components/common/PageHero';
+import { Reveal } from '@/components/common/Reveal';
 
 // ---------- Types ----------
 interface ApiCaseStudy {
@@ -115,52 +118,48 @@ export default async function CaseStudyDetailPage({
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-slate-900">
-        <Image
-          src={heroImage}
-          alt={cs.title}
-          fill
-          priority
-          className="object-cover opacity-60"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/40" />
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#4DB6EA] via-[#C4EFDD] to-[#3DD68C] pt-36 pb-20 lg:pt-48 lg:pb-28">
+  <div className="container relative mx-auto max-w-7xl px-4">
+    <Reveal direction="up" className="max-w-4xl">
+      {/* Breadcrumb */}
+      <nav className="mb-6 flex items-center gap-2 text-sm text-[#0B1B4D]/60">
+        <Link href="/" className="transition-colors hover:text-[#0B1B4D]">
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4" />
+        <Link
+          href="/our-work/case-studies"
+          className="transition-colors hover:text-[#0B1B4D]"
+        >
+          Case Studies
+        </Link>
+        <ChevronRight className="h-4 w-4" />
+        <span className="font-medium text-[#0B1B4D]">{cs.title}</span>
+      </nav>
 
-        {/* Grid overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:56px_56px]" />
+      {/* Industry badge */}
+      {cs.industry && (
+        <span className="mb-4 inline-flex w-fit items-center gap-2 border-l-2 border-[#0B1B4D] bg-white/40 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#0B1B4D] backdrop-blur-md">
+          <Tag className="h-3 w-3" />
+          {cs.industry}
+        </span>
+      )}
 
-        <div className="container relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-16 lg:pb-20">
-          {/* Breadcrumb */}
-          <Link
-            href="/our-work/case-studies"
-            className="mb-6 inline-flex w-fit items-center gap-2 border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-md transition-colors hover:bg-white/10"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            All Case Studies
-          </Link>
+      <h1 className="text-4xl font-bold leading-tight text-[#0B1B4D] sm:text-5xl lg:text-6xl">
+        {cs.title}
+      </h1>
 
-          {/* Industry badge */}
-          {cs.industry && (
-            <span className="mb-4 inline-flex w-fit items-center gap-2 border-l-2 border-electric bg-black/40 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-              <Tag className="h-3 w-3" />
-              {cs.industry}
-            </span>
-          )}
-
-          <h1 className="max-w-4xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            {cs.title}
-          </h1>
-
-          {cs.client && (
-            <div className="mt-6 flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2 text-sm text-slate-300">
-                <Building2 className="h-4 w-4 text-electric" />
-                <span className="font-medium">{cs.client}</span>
-              </div>
-            </div>
-          )}
+      {cs.client && (
+        <div className="mt-6 flex items-center gap-2 text-lg text-[#0B1B4D]/75">
+          <Building2 className="h-5 w-5 text-[#0B1B4D]" />
+          <span className="font-medium">{cs.client}</span>
         </div>
-      </section>
+      )}
+    </Reveal>
+  </div>
+</section>
+
+   
 
       {/* ============ BODY ============ */}
       <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
