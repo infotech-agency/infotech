@@ -142,7 +142,8 @@ export default function Technologies() {
   useEffect(() => {
     const fetchTechnologies = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/technologies`);
+        // const response = await fetch(`${BASE_URL}/technologies`);
+        const response = await fetch(`${BASE_URL}/technologies?limit=100`);
         const result = await response.json();
 
         if (result.success && result.data) {

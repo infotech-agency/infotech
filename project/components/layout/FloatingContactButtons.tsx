@@ -36,45 +36,101 @@ export default function FloatingContactButtons({
     `pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[#111827] px-3 py-1.5 text-sm font-medium text-white shadow-lg transition-all duration-200 ${
       visible ? "translate-x-0 opacity-100" : "translate-x-2 opacity-0"
     }`;
+    return (
+  <div className="fixed inset-x-0 bottom-0 z-50 flex w-full md:inset-x-auto md:bottom-6 md:right-6 md:w-auto md:flex-col md:items-end md:gap-3">
+    {/* WhatsApp */}
+    <a
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      onMouseEnter={() => setShowLabels(true)}
+      onMouseLeave={() => setShowLabels(false)}
+      onFocus={() => setShowLabels(true)}
+      onBlur={() => setShowLabels(false)}
+      className="group relative flex w-1/2 items-center justify-center gap-2 bg-[#25D366] py-3.5 text-sm font-semibold text-white md:block md:w-auto md:bg-transparent md:p-0"
+    >
+      {/* Desktop hover label */}
+      <span className={`hidden md:block ${labelClass(showLabels)}`}>
+        Chat on WhatsApp
+      </span>
 
-  return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* WhatsApp */}
-      <a
-        href={whatsappHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
-        onMouseEnter={() => setShowLabels(true)}
-        onMouseLeave={() => setShowLabels(false)}
-        onFocus={() => setShowLabels(true)}
-        onBlur={() => setShowLabels(false)}
-        className="group relative flex items-center"
-      >
-        <span className={labelClass(showLabels)}>Chat on WhatsApp</span>
+      {/* Mobile: icon + text, Desktop: round icon */}
+      <span className="flex items-center justify-center gap-2 md:h-14 md:w-14 md:rounded-full md:bg-white md:shadow-xl md:shadow-black/20 md:transition-transform md:duration-200 md:group-hover:scale-105">
+        <WhatsAppIcon className="h-5 w-5 md:hidden" />
+        <span className="md:hidden">WhatsApp</span>
+        <Image
+          alt="wtsapp"
+          height={50}
+          width={50}
+          src="https://www.freeiconspng.com/thumbs/logo-whatsapp-png/logo-whatsapp-png-image-2.png"
+          className="hidden md:block"
+        />
+      </span>
+    </a>
 
-        <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
-          {/* <WhatsAppIcon className="h-7 w-7" /> */}
-          <Image alt="wtsapp" height={50} width={50} src={'https://www.freeiconspng.com/thumbs/logo-whatsapp-png/logo-whatsapp-png-image-2.png'}/>
-        </span>
-      </a>
+    {/* Call */}
+    <a
+      href={callHref}
+      aria-label="Call us"
+      onMouseEnter={() => setShowLabels(true)}
+      onMouseLeave={() => setShowLabels(false)}
+      onFocus={() => setShowLabels(true)}
+      onBlur={() => setShowLabels(false)}
+      className="group relative flex w-1/2 items-center justify-center gap-2 bg-brand py-3.5 text-sm font-semibold text-white md:block md:w-auto md:bg-transparent md:p-0"
+    >
+      {/* Desktop hover label */}
+      <span className={`hidden md:block ${labelClass(showLabels)}`}>
+        Call us now
+      </span>
 
-      {/* Call */}
-      <a
-        href={callHref}
-        aria-label="Call us"
-        onMouseEnter={() => setShowLabels(true)}
-        onMouseLeave={() => setShowLabels(false)}
-        onFocus={() => setShowLabels(true)}
-        onBlur={() => setShowLabels(false)}
-        className="group relative flex items-center"
-      >
-        <span className={labelClass(showLabels)}>Call us now</span>
+      {/* Mobile: icon + text, Desktop: round icon */}
+      <span className="flex items-center justify-center gap-2 md:h-14 md:w-14 md:rounded-full md:bg-brand md:shadow-xl md:shadow-black/20 md:transition-transform md:duration-200 md:group-hover:scale-105">
+        <Phone className="h-5 w-5 md:h-6 md:w-6" strokeWidth={2} />
+        <span className="md:hidden">Call Now</span>
+      </span>
+    </a>
+  </div>
+);
 
-        <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#F43F5E] text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
-          <Phone className="h-6 w-6" strokeWidth={2} />
-        </span>
-      </a>
-    </div>
-  );
+  // return (
+  //   <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+  //     {/* WhatsApp */}
+  //     <a
+  //       href={whatsappHref}
+  //       target="_blank"
+  //       rel="noopener noreferrer"
+  //       aria-label="Chat with us on WhatsApp"
+  //       onMouseEnter={() => setShowLabels(true)}
+  //       onMouseLeave={() => setShowLabels(false)}
+  //       onFocus={() => setShowLabels(true)}
+  //       onBlur={() => setShowLabels(false)}
+  //       className="group relative flex items-center"
+  //     >
+  //       <span className={labelClass(showLabels)}>Chat on WhatsApp</span>
+
+  //       <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
+  //         {/* <WhatsAppIcon className="h-7 w-7" /> */}
+  //         <Image alt="wtsapp" height={50} width={50} src={'https://www.freeiconspng.com/thumbs/logo-whatsapp-png/logo-whatsapp-png-image-2.png'}/>
+  //       </span>
+  //     </a>
+
+  //     {/* Call */}
+  //     <a
+  //       href={callHref}
+  //       aria-label="Call us"
+  //       onMouseEnter={() => setShowLabels(true)}
+  //       onMouseLeave={() => setShowLabels(false)}
+  //       onFocus={() => setShowLabels(true)}
+  //       onBlur={() => setShowLabels(false)}
+  //       className="group relative flex items-center"
+  //     >
+  //       <span className={labelClass(showLabels)}>Call us now</span>
+
+  //       <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white shadow-xl shadow-black/20 transition-transform duration-200 group-hover:scale-105">
+  //         <Phone className="h-6 w-6" strokeWidth={2} />
+  //       </span>
+  //     </a>
+  //   </div>
+  // );
 }

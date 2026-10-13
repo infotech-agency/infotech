@@ -218,7 +218,7 @@ export default function FeaturedCaseStudies() {
           {filtered.map((cs) => (
             <StaggerItem key={cs._id}>
               <div className="group h-full overflow-hidden rounded border border-border bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="relative h-56 overflow-hidden rounded">
+                {/* <div className="relative h-56 overflow-hidden rounded">
                   <Image
                     src={getImageUrl(cs)}
                     alt={cs.title}
@@ -226,7 +226,17 @@ export default function FeaturedCaseStudies() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                </div>
+                </div> */}
+                <div className="overflow-hidden rounded-t">
+  <Image
+    src={getImageUrl(cs)}
+    alt={cs.title}
+    width={0}
+    height={0}
+    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    className="block h-auto w-full"
+  />
+</div>
                 <div className="p-6">
                   <span className="inline-block rounded-full bg-teal-50 px-4 py-1.5 text-sm font-semibold text-teal-600">
                     {getCategory(cs)}
@@ -239,7 +249,7 @@ export default function FeaturedCaseStudies() {
                   </p>
                   <Link
                     href={`/our-work/case-studies/${cs.slug}`}
-                    className="mt-5 inline-flex items-center gap-2 rounded bg-pink-600 py-2.5 pl-5 pr-2 text-sm font-semibold text-white transition-colors hover:bg-pink-700"
+                    className="mt-5 inline-flex items-center gap-2 rounded bg-green-600 py-2.5 pl-5 pr-2 text-sm font-semibold text-white transition-colors hover:bg-green-700"
                   >
                     View Case Study
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">

@@ -266,7 +266,7 @@ export default function HomeFAQ() {
           </p>
           <a
             href="/contact"
-            className="group inline-flex items-center gap-2 rounded-lg bg-ocean px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
+            className="group inline-flex items-center gap-2  bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-ocean-dark"
           >
             Contact our team
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

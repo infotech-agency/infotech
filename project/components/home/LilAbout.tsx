@@ -106,13 +106,13 @@ export default function AboutSection() {
             </div>
 
             <div className="mt-9 flex flex-wrap items-center gap-6">
-              <button className="inline-flex items-center gap-2 rounded bg-rose-500 px-6 py-3 text-[0.9rem] font-semibold text-white transition-colors hover:bg-rose-600">
+              <button className="inline-flex items-center gap-2 rounded bg-green-600 px-6 py-3 text-[0.9rem] font-semibold text-white transition-colors hover:bg-green-700">
                 Discover More
                 <ArrowRight className="h-4 w-4" />
               </button>
 
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-rose-500">
+                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-brand">
                   <Phone className="h-5 w-5 text-white" />
                 </span>
                 <div className="text-[0.9rem]">

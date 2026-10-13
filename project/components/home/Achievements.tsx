@@ -1,128 +1,5 @@
 
 
-// "use client"
-// import { useState, useEffect } from 'react';
-// import { Reveal } from '@/components/common/Reveal';
-// import Counter from '@/components/common/Counter';
-// import { Trophy, Users, Rocket, Award, CheckCircle, Sparkles } from 'lucide-react';
-// import { BASE_URL } from '@/utils/baseUrl';
-
-// interface AchievementItem {
-//   _id: string;
-//   label: string;
-//   value: number;
-//   suffix: string;
-//   icon: string;
-//   description?: string;
-// }
-
-// const IconMap: Record<string, any> = {
-//   trophy: Trophy,
-//   users: Users,
-//   rocket: Rocket,
-//   award: Award,
-//   check: CheckCircle,
-//   sparkles: Sparkles
-// };
-
-// export default function Achievements() {
-//   const [achievements, setAchievements] = useState<AchievementItem[]>([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchAchievements = async () => {
-//       try {
-//         const response = await fetch(`${BASE_URL}/counters`);
-//         const result = await response.json();
-
-//         if (result.success && result.data) {
-//           const sortedData = result.data.sort((a: any, b: any) => a.sortOrder - b.sortOrder);
-//           setAchievements(sortedData);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching achievements data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchAchievements();
-//   }, []);
-
-//   return (
-//     <section
-//       style={{
-//         // Blue -> mint -> green (logo image wala gradient)
-//         backgroundImage:
-//           "linear-gradient(135deg, #2b8be0 0%, #6fdc9f 50%, #1fc46a 100%)",
-//       }}
-//       className="relative overflow-hidden py-20 lg:py-28"
-//     >
-//       {/* halka overlay taaki white text readable rahe */}
-//       <div className="pointer-events-none absolute inset-0 bg-black/10" />
-
-//       <div className="container relative z-10 mx-auto px-4">
-//         {/* Header */}
-//         <div className="mx-auto max-w-2xl text-center">
-//           <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-//             The numbers behind 12 years of growth
-//           </h2>
-//           <p className="mt-4 text-lg leading-relaxed text-white/80">
-//             500+ brands, one consistent outcome: measurable results from
-//             data-driven digital marketing.
-//           </p>
-//         </div>
-
-//         {/* Stat strip */}
-//         <Reveal className="relative mx-auto mt-16 max-w-5xl">
-//           <div className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-40 -translate-y-1/2 bg-white/10 blur-3xl" />
-
-//           {loading ? (
-//             <div className="grid grid-cols-2 gap-y-10 border-y border-white/20 py-10 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
-//               {[...Array(4)].map((_, index) => (
-//                 <div key={index} className="flex flex-col items-center gap-3 px-6">
-//                   <div className="h-6 w-6 animate-pulse rounded-full bg-white/20" />
-//                   <div className="h-10 w-20 animate-pulse rounded bg-white/20" />
-//                   <div className="h-3 w-28 animate-pulse rounded bg-white/20" />
-//                 </div>
-//               ))}
-//             </div>
-//           ) : (
-//             <div className="grid grid-cols-2 gap-y-10 border-y border-white/20 py-10 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
-//               {achievements.map((item) => {
-//                 const Icon = IconMap[item.icon?.toLowerCase()] || Award;
-
-//                 return (
-//                   <div
-//                     key={item._id}
-//                     className="flex flex-col items-center gap-3 px-6 text-center"
-//                   >
-//                     <Icon className="h-6 w-6 text-white/70" strokeWidth={1.5} />
-
-//                     <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-//                       <Counter value={item.value} suffix={item.suffix} />
-//                     </div>
-
-//                     <div className="text-sm font-medium text-white/80">
-//                       {item.label}
-//                     </div>
-
-//                     {item.description && (
-//                       <p className="text-xs leading-relaxed text-white/70">
-//                         {item.description}
-//                       </p>
-//                     )}
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           )}
-//         </Reveal>
-//       </div>
-//     </section>
-//   );
-// }
-
 
 "use client"
 import { useState, useEffect } from 'react';
@@ -255,55 +132,57 @@ export default function Achievements() {
         </div>
 
         {/* Stat strip — ek hi line me, frosted glass box */}
-        <Reveal className="relative mx-auto mt-16 max-w-6xl">
-          <div className="rounded-3xl border border-white/25 bg-white/10 p-2 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
-            {loading ? (
-              <div className="flex overflow-x-auto sm:overflow-visible">
-                {[...Array(4)].map((_, index) => (
-                  <div
-                    key={index}
-                    className="flex min-w-[170px] flex-1 shrink-0 flex-col items-center gap-3 px-6 py-6 sm:min-w-0 sm:shrink"
-                  >
-                    <div className="h-12 w-12 animate-pulse rounded-full bg-white/20" />
-                    <div className="h-10 w-20 animate-pulse rounded bg-white/20" />
-                    <div className="h-3 w-24 animate-pulse rounded bg-white/20" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex snap-x snap-mandatory overflow-x-auto sm:snap-none sm:overflow-visible sm:divide-x sm:divide-white/20">
-                {achievements.map((item) => {
-                  const Icon = IconMap[item.icon?.toLowerCase()] || Award;
+       {/* Stat strip: mobile pe 2-col grid, desktop pe ek line, har card glass */}
+<Reveal className="relative mx-auto mt-14 max-w-6xl lg:mt-16">
+  {loading ? (
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:flex">
+      {[...Array(4)].map((_, index) => (
+        <div
+          key={index}
+          className="flex flex-col items-center gap-3 rounded-2xl border border-white/25 bg-white/10 px-4 py-6 backdrop-blur-md md:flex-1"
+        >
+          <div className="h-12 w-12 animate-pulse rounded-full bg-white/20" />
+          <div className="h-9 w-20 animate-pulse rounded bg-white/20" />
+          <div className="h-3 w-24 animate-pulse rounded bg-white/20" />
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:flex md:gap-5">
+      {achievements.map((item) => {
+        const Icon = IconMap[item.icon?.toLowerCase()] || Award;
 
-                  return (
-                    <div
-                      key={item._id}
-                      className="group flex min-w-[170px] flex-1 shrink-0 snap-center flex-col items-center gap-3 px-6 py-6 text-center sm:min-w-0 sm:shrink"
-                    >
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/25">
-                        <Icon className="h-6 w-6 text-white" strokeWidth={1.5} />
-                      </span>
+        return (
+          <div
+            key={item._id}
+            className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-white/30 bg-white/15 px-4 py-6 text-center shadow-[0_10px_40px_-15px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/20 sm:px-5 sm:py-8 md:min-w-0 md:flex-1 [&:last-child:nth-child(odd)]:col-span-2 md:[&:last-child:nth-child(odd)]:col-span-1"
+          >
+            {/* top highlight, glass shine */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
-                      <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-                        <Counter value={item.value} suffix={item.suffix} />
-                      </div>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 ring-1 ring-white/40 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30 sm:h-12 sm:w-12">
+              <Icon className="h-5 w-5 text-white sm:h-6 sm:w-6" strokeWidth={1.5} />
+            </span>
 
-                      <div className="text-sm font-medium text-white/90">
-                        {item.label}
-                      </div>
+            <div className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <Counter value={item.value} suffix={item.suffix} />
+            </div>
 
-                      {item.description && (
-                        <p className="text-xs leading-relaxed text-white/70">
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="text-xs font-medium text-white/90 sm:text-sm">
+              {item.label}
+            </div>
+
+            {item.description && (
+              <p className="text-xs leading-relaxed text-white/70">
+                {item.description}
+              </p>
             )}
           </div>
-        </Reveal>
+        );
+      })}
+    </div>
+  )}
+</Reveal>
       </div>
     </section>
   );
