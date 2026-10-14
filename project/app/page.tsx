@@ -15,6 +15,7 @@ import SmartStrategiesSection from '@/components/sections/Smartstrategiessection
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 import CircularCarousel from '@/components/animation/CircularCarouselItem';
 import ServicesSection from '@/components/home/Servicessection';
+import FluidCursor from '@/components/animation/FluidCursor';
 
 export default function HomePage() {
   const items = [
@@ -77,6 +78,7 @@ export default function HomePage() {
       whatsappNumber="919220147497"  
   phoneNumber="+919220147497"
       />
+      <FluidCursor/>
       <Hero />
       <TrustedBy />
       <LilAbout/>

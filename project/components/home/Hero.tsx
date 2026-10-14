@@ -5,6 +5,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import FluidCursor from '../animation/FluidCursor';
+import TrustSection from '../layout/TrustSection';
 
 /**
  * Typing effect ke phrases — har phrase ka apna alag gradient.
@@ -127,6 +129,7 @@ export default function Hero() {
   return (
     // HEIGHT REDUCED HERE
    <section className="relative overflow-hidden bg-white pt-24 pb-14 sm:pt-28 lg:pt-36 lg:pb-20">
+        <FluidCursor/>
       {/* ===== Holi color splashes ===== */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         {blobs.map((b, i) => (
@@ -261,31 +264,31 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-4 max-w-md text-base leading-relaxed text-slate-900 sm:text-lg">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-900 sm:text-lg">
             SEO, PPC, web development, and content strategies that deliver
             compounding ROI, not vanity metrics.
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-col items-center gap-5 sm:flex-row sm:gap-8">
+          <div className="mt-7 flex flex-col items-center gap-5 sm:flex-row sm:gap-8">
             <Link
-              href="/contact"
-              className="inline-flex items-center justify-center  bg-[#111] px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-[#22BFA6]/20 transition-all hover:-translate-y-0.5 hover:bg-black/80"
-            >
-              Get Free Proposal
-            </Link>
-            <Link
-              href="/our-work/case-studies"
-              className="group inline-flex border-2 border-black px-8 py-3.5 items-center gap-2 text-base font-bold text-black"
-            >
-              View Case Studies
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                ➔
-              </span>
-            </Link>
+    href="/contact"
+    className="inline-flex items-center justify-center bg-gradient-to-r from-brand to-blue-600 px-8 py-3.5 text-base text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-600 hover:to-brand"
+  >
+    Get Free Proposal
+  </Link>
+           
+<Link
+  href="/our-work/case-studies"
+  className="group inline-flex border border-black px-8 py-3.5 items-center gap-2 text-base font-semibold text-black"
+>
+  View Case Studies
+</Link>
+
           </div>
         </motion.div>
       </div>
+      <TrustSection/>
     </section>
   );
 }
