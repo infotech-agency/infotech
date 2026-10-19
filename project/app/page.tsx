@@ -78,7 +78,7 @@ export default function HomePage() {
       whatsappNumber="919220147497"  
   phoneNumber="+919220147497"
       />
-      <FluidCursor/>
+  
       <Hero />
       <TrustedBy />
       <LilAbout/>
