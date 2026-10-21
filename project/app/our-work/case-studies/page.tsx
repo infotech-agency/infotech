@@ -1,5 +1,7 @@
+
+
 // import Image from 'next/image';
-// import { TrendingUp, ArrowRight, Target, Zap, FolderOpen } from 'lucide-react';
+// import { TrendingUp, ArrowRight, FolderOpen } from 'lucide-react';
 // import type { Metadata } from 'next';
 // import Link from 'next/link';
 // import PageHero from '@/components/common/PageHero';
@@ -35,8 +37,6 @@
 //     title: cs.title,
 //     client: cs.client,
 //     industry: cs.industry,
-//     challenge: cs.challenge,
-//     solution: cs.solution,
 //     result: cs.result,
 //     image: cs.images?.[0]?.secure_url || '/placeholder.jpg',
 //   };
@@ -45,7 +45,7 @@
 // async function getCaseStudies() {
 //   try {
 //     const res = await fetch(`${BASE_URL}/case-studies`, { cache: 'no-store' });
-    
+
 //     if (!res.ok) return [];
 //     const result = await res.json();
 //     if (!result.success) return [];
@@ -90,12 +90,13 @@
 //           ) : (
 //             <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
 //               {caseStudies.map((cs) => (
-//                 <div 
-//                   key={cs.slug} 
-//                   className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-slate-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+//                 <Link
+//                   href={`/our-work/case-studies/${cs.slug}`}
+//                   key={cs.slug}
+//                   className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2 hover:border-slate-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
 //                 >
 //                   {/* Hover Top Accent Line */}
-//                   <div className="absolute top-0 left-1/2 z-20 h-1 w-0 -translate-x-1/2 bg-electric transition-all duration-500 group-hover:w-1/2"></div>
+//                   <div className="absolute top-0 left-1/2 z-20 h-1 w-0 -translate-x-1/2 bg-electric transition-all duration-500 group-hover:w-1/2" />
 
 //                   {/* Image Section */}
 //                   <div className="relative h-64 overflow-hidden">
@@ -107,8 +108,8 @@
 //                       sizes="(max-width: 768px) 100vw, 50vw"
 //                     />
 //                     {/* Cinematic Overlay */}
-//                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-                    
+//                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+
 //                     {/* Industry Badge */}
 //                     <div className="absolute top-4 left-4 border-l-2 border-white/50 bg-black/30 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
 //                       {cs.industry}
@@ -119,47 +120,21 @@
 //                       <p className="text-[11px] font-medium uppercase tracking-wider text-slate-300">
 //                         {cs.client}
 //                       </p>
-//                       <h3 className="mt-1 text-2xl font-extrabold tracking-tight text-white">
+//                       <h3 className="mt-1 text-2xl font-extrabold leading-tight tracking-tight text-white">
 //                         {cs.title}
 //                       </h3>
 //                     </div>
 //                   </div>
 
-//                   {/* Content Body */}
-//                   <div className="flex flex-1 flex-col p-6 lg:p-8">
-                    
-//                     {/* Challenge & Strategy Grid */}
-//                     <div className="grid gap-6 sm:grid-cols-2">
-//                       {cs.challenge && (
-//                         <div>
-//                           <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
-//                             <Target className="h-3.5 w-3.5 text-electric" /> Challenge
-//                           </h4>
-//                           <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-4">
-//                             {cs.challenge}
-//                           </p>
-//                         </div>
-//                       )}
-//                       {cs.solution && (
-//                         <div>
-//                           <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
-//                             <Zap className="h-3.5 w-3.5 text-leaf" /> Strategy
-//                           </h4>
-//                           <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-4">
-//                             {cs.solution}
-//                           </p>
-//                         </div>
-//                       )}
-//                     </div>
-
-//                     {/* Key Impact (Result) Block - Dark Dashboard Style */}
-//                     {cs.result && (
-//                       <div className="mt-8 flex items-center gap-4 border border-slate-200 bg-slate-900 p-5">
-//                         <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-electric/20">
-//                           <TrendingUp className="h-6 w-6 text-electric" />
+//                   {/* Content Body — Key Impact only, rest lives on the detail page */}
+//                   <div className="flex flex-1 flex-col justify-between p-6 lg:p-8">
+//                     {cs.result ? (
+//                       <div className="flex items-center gap-4 border border-slate-200 bg-[#6BAB44] p-5">
+//                         <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-[#7ef534]">
+//                           <TrendingUp className="h-6 w-6 text-[#6BAB44]" />
 //                         </div>
 //                         <div>
-//                           <span className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+//                           <span className="block text-[10px] font-bold uppercase tracking-widest text-black">
 //                             Key Impact
 //                           </span>
 //                           <span className="text-base font-bold leading-tight text-white">
@@ -167,27 +142,24 @@
 //                           </span>
 //                         </div>
 //                       </div>
+//                     ) : (
+//                       <div />
 //                     )}
 
 //                     {/* Footer Link */}
-//                     <div className="mt-auto pt-6">
-//                       <Link 
-//                         href={`/our-work/case-studies/${cs.slug}`} 
-//                         className="group/link flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-bold text-brand transition-colors hover:text-electric"
-//                       >
-//                         Read Full Case Study
-//                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-//                       </Link>
+//                     <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-bold text-brand transition-colors group-hover:text-[#6BAB44]">
+//                       Read Full Case Study
+//                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
 //                     </div>
 //                   </div>
-//                 </div>
+//                 </Link>
 //               ))}
 //             </div>
 //           )}
 //         </div>
 //       </section>
 
-//       <CTABanner />
+     
 //     </>
 //   );
 // }
@@ -277,69 +249,62 @@ export default async function CaseStudiesPage() {
                 <FolderOpen className="h-6 w-6 text-slate-400" />
               </div>
               <h3 className="text-xl font-bold text-brand">No Case Studies Found</h3>
-              <p className="mt-2 text-sm text-slate-500">No published case studies available at the moment. Please check back later.</p>
+              <p className="mt-2 text-sm text-slate-500">
+                No published case studies available at the moment. Please check back later.
+              </p>
             </div>
           ) : (
-            <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {caseStudies.map((cs) => (
                 <Link
                   href={`/our-work/case-studies/${cs.slug}`}
                   key={cs.slug}
-                  className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2 hover:border-slate-900 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+                  className="group flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-900 hover:shadow-lg"
                 >
-                  {/* Hover Top Accent Line */}
-                  <div className="absolute top-0 left-1/2 z-20 h-1 w-0 -translate-x-1/2 bg-electric transition-all duration-500 group-hover:w-1/2" />
-
-                  {/* Image Section */}
-                  <div className="relative h-64 overflow-hidden">
+                  {/* Image — clean, no overlay */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-slate-200 bg-slate-100">
                     <Image
                       src={cs.image}
                       alt={cs.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    {/* Cinematic Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
 
-                    {/* Industry Badge */}
-                    <div className="absolute top-4 left-4 border-l-2 border-white/50 bg-black/30 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                      {cs.industry}
-                    </div>
-
-                    {/* Client & Title (Over Image) */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <p className="text-[11px] font-medium uppercase tracking-wider text-slate-300">
-                        {cs.client}
-                      </p>
-                      <h3 className="mt-1 text-2xl font-extrabold leading-tight tracking-tight text-white">
-                        {cs.title}
-                      </h3>
-                    </div>
+                    {/* Industry badge */}
+                    {cs.industry && (
+                      <div className="absolute left-4 top-4 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+                        {cs.industry}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Content Body — Key Impact only, rest lives on the detail page */}
-                  <div className="flex flex-1 flex-col justify-between p-6 lg:p-8">
-                    {cs.result ? (
-                      <div className="flex items-center gap-4 border border-slate-200 bg-[#6BAB44] p-5">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-[#7ef534]">
-                          <TrendingUp className="h-6 w-6 text-[#6BAB44]" />
-                        </div>
-                        <div>
-                          <span className="block text-[10px] font-bold uppercase tracking-widest text-black">
+                  {/* Content */}
+                  <div className="flex flex-1 flex-col p-6">
+                    {cs.client && (
+                      <p className="text-sm font-medium text-slate-500">{cs.client}</p>
+                    )}
+                    <h3 className="mt-1 line-clamp-2 text-xl font-bold leading-snug text-brand">
+                      {cs.title}
+                    </h3>
+
+                    {/* Key Impact — short preview only */}
+                    {cs.result && (
+                      <div className="mt-4 flex items-start gap-3 border-t border-slate-100 pt-4">
+                        <TrendingUp className="mt-0.5 h-5 w-5 shrink-0 text-[#6BAB44]" />
+                        <div className="min-w-0">
+                          <span className="block text-xs font-semibold text-slate-500">
                             Key Impact
                           </span>
-                          <span className="text-base font-bold leading-tight text-white">
+                          <p className="mt-0.5 line-clamp-2 text-sm font-medium leading-relaxed text-slate-700">
                             {cs.result}
-                          </span>
+                          </p>
                         </div>
                       </div>
-                    ) : (
-                      <div />
                     )}
 
-                    {/* Footer Link */}
-                    <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-bold text-brand transition-colors group-hover:text-[#6BAB44]">
+                    {/* Footer link */}
+                    <div className="mt-auto flex items-center justify-between pt-5 text-sm font-semibold text-brand transition-colors group-hover:text-[#6BAB44]">
                       Read Full Case Study
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
@@ -350,8 +315,6 @@ export default async function CaseStudiesPage() {
           )}
         </div>
       </section>
-
-     
     </>
   );
 }
