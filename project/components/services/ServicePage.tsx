@@ -499,12 +499,12 @@ export default function ServicePage({ service }: ServicePageProps) {
 
   return (
     <>
-      <PageHero
+      {/* <PageHero
         breadcrumb={categoryName || shortTitle}
         title={s.title}
         description={s.shortDescription || s.overview}
         image={banner?.secure_url || ''}
-      />
+      /> */}
 
       {/* Full-width banner */}
       {banner?.secure_url && (

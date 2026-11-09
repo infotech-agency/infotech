@@ -38,64 +38,137 @@
 // }
 
 // app/services/[slug]/page.tsx
+// import { notFound } from 'next/navigation';
+// import type { Metadata } from 'next';
+// import ServicePage from '@/components/services/ServicePage';
+// import { fetchServiceBySlug, getAllServiceSlugs, type Service } from '@/lib/api';
+
+// // Generate static params for all services
+// export async function generateStaticParams() {
+//   const slugs = await getAllServiceSlugs();
+//   return slugs.map((slug) => ({ slug }));
+// }
+
+// // Generate metadata dynamically
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string };
+// }): Promise<Metadata> {
+//   const service = await fetchServiceBySlug(params.slug);
+//   if (!service) {
+//     return {
+//       title: 'Service Not Found',
+//       description: 'The requested service could not be found.'
+//     };
+//   }
+  
+//   return {
+//     title: service.metaTitle || service.title,
+//     description: service.metaDescription || service.shortDescription,
+//     alternates: { 
+//       canonical:  service.canonicalUrl ||`/services/${service.slug}` 
+//     },
+//     openGraph: {
+//       title: service.metaTitle || service.title,
+//       description: service.metaDescription || service.shortDescription,
+//       url: `https://infotechagency.in/services/${service.slug}`,
+//       images: [
+//         { 
+//           url: service.bannerImage?.secure_url || '', 
+//           width: 1200, 
+//           height: 800, 
+//           alt: service.title 
+//         }
+//       ],
+//     },
+//   };
+// }
+
+// // Main page component
+// export default async function ServiceRoute({
+//   params,
+// }: {
+//   params: { slug: string };
+// }) {
+//   const service = await fetchServiceBySlug(params.slug);
+  
+//   if (!service) {
+//     notFound();
+//   }
+  
+//   return <ServicePage service={service} />;
+// }
+
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import ServicePage from '@/components/services/ServicePage';
-import { fetchServiceBySlug, getAllServiceSlugs, type Service } from '@/lib/api';
+import { fetchServiceBySlug } from '@/lib/api';
 
-// Generate static params for all services
-export async function generateStaticParams() {
-  const slugs = await getAllServiceSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+export const dynamic = 'force-dynamic';
 
-// Generate metadata dynamically
+type ServiceRouteProps = {
+  params: { slug: string } | Promise<{ slug: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const service = await fetchServiceBySlug(params.slug);
+}: ServiceRouteProps): Promise<Metadata> {
+  const { slug } = await params;
+  const service = await fetchServiceBySlug(slug);
+
   if (!service) {
     return {
       title: 'Service Not Found',
-      description: 'The requested service could not be found.'
+      description: 'The requested service could not be found.',
     };
   }
-  
+
+  const title = service.metaTitle || service.title;
+  const description =
+    service.metaDescription || service.shortDescription;
+
+  const canonicalUrl =
+    service.canonicalUrl ||
+    `https://infotechagency.com/services/${service.slug}`;
+
+  const bannerUrl = service.bannerImage?.secure_url;
+
   return {
-    title: service.metaTitle || service.title,
-    description: service.metaDescription || service.shortDescription,
-    alternates: { 
-      canonical:  service.canonicalUrl ||`/services/${service.slug}` 
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
     },
     openGraph: {
-      title: service.metaTitle || service.title,
-      description: service.metaDescription || service.shortDescription,
-      url: `https://infotechagency.in/services/${service.slug}`,
-      images: [
-        { 
-          url: service.bannerImage?.secure_url || '', 
-          width: 1200, 
-          height: 800, 
-          alt: service.title 
-        }
-      ],
+      title,
+      description,
+      url: canonicalUrl,
+      ...(bannerUrl
+        ? {
+            images: [
+              {
+                url: bannerUrl,
+                width: 1200,
+                height: 800,
+                alt: service.title,
+              },
+            ],
+          }
+        : {}),
     },
   };
 }
 
-// Main page component
 export default async function ServiceRoute({
   params,
-}: {
-  params: { slug: string };
-}) {
-  const service = await fetchServiceBySlug(params.slug);
-  
+}: ServiceRouteProps) {
+  const { slug } = await params;
+  const service = await fetchServiceBySlug(slug);
+
   if (!service) {
     notFound();
   }
-  
+
   return <ServicePage service={service} />;
 }
